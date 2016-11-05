@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>小猪巴士优惠券</title>
+
+
+<link rel="stylesheet" type="text/css" href="http://myweb-10017157.cos.myqcloud.com/2016/20161105/devices.min.css">
+<style type="text/css">
+	.cd-iphone-6{
+		padding: 30px;
+		margin:10% auto;
+	}
+	.cd-iphone-6 .cd-screen{
+		background:url("http://myweb-10017157.cos.myqcloud.com/2016/20161105/IMG_0126.PNG");
+		background-repeat:round;
+	}
+	.htmleaf-container{
+		width: 50%;
+		float:left;
+	}
+	.box{
+		width: 50%;
+		float:right;
+		font-size: 47px;
+		margin: 10% auto;
+		text-align: center;
+	}
+	.box span{
+		display: block;
+		padding-bottom: 10%;
+	}
+	.box div{
+		cursor: pointer;
+		background-color: skyblue;
+		border-radius: 25px;
+		margin: 0 20% 0 20%;
+		color: white;
+	}
+	.number{
+		width: 136px;
+    	background-color: white;
+    	height: 25px;
+    	position: relative;
+    	top: 136px;
+    	left: 40px;
+		font-size: 20px;
+		display: none;
+	}
+</style>
+
+</head>
+<body>
+<article class="htmleaf-container">
+	<div class="cd-iphone-6 cd-rosegold cd-scale-60">
+	  <div class="cd-body">
+		<div class="cd-sound"></div>
+		<div class="cd-sleep"></div>
+		<div class="cd-camera"></div>
+		<div class="cd-ear"></div>
+		<div class="cd-home"></div>
+		<div class="cd-screen cd-transition-slider cd-smart-loader" ></div>
+		<div class="number">12121212121</div>
+	  </div>
+	</div>
+</article>
+<header class="box">
+	<span class="a">第一步</span>
+	<span class="b">打开 小猪巴士 手机应用</span>
+	<div class="c">我已打开</div>
+</header>
+<script src="http://myweb-10017157.cos.myqcloud.com/2016/20161105/jquery-3.1.1.min.js"></script>
+</body>
+<script>
+	var number=0;var key;
+	var a="是我|name";
+	function click(b){
+		switch(number){
+			case 0:{
+				if(b.length!=16){
+					alert("出现了一些未知错误！");
+				}
+				else{
+					$(".a").html("第二步");
+					$(".b").html("退出已经登陆的账号，并点击 登陆 按钮");
+					$(".c").html("获得账号");
+					key=b;
+					a="给我一个号码吧|"+b;
+					$(".cd-screen").css("background-image","url(http://myweb-10017157.cos.myqcloud.com/2016/20161105/IMG_0125.PNG");
+				}
+				break;
+			}
+			case 1:{
+				if(b.length!=11){
+					$(".a").html("出错");
+					$(".b").html("我忘了添加账号了，请联系我！");
+					$(".c").css("display","none");
+					
+				}
+				else{
+					$(".a").html("第三步");
+					$(".b").html("输入手机号 "+ b +" 并且点击获取验证码");
+					$(".c").html("获得验证码");
+					$(".number").css("display","block");
+					$(".number").html(b);
+					$(".cd-screen").css("background-image","url(http://myweb-10017157.cos.myqcloud.com/2016/20161105/IMG_0127.PNG");
+					a="验证码|"+key+"|"+b;
+				}
+				break;
+			}
+			default:{
+				$(".a").html("第"+(number-1)+"次获取验证码");
+				$(".b").html(b);
+				$(".c").html("再次获取验证码");
+				break;
+			}
+		}
+		number++;
+	}
+    $(function() {
+        $(".c").click(function() {
+			console.log(a);
+			$.post("",a,click,"html");
+        });
+
+    });
+</script>
+</html>
