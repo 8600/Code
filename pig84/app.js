@@ -9,7 +9,7 @@ function get(key,response,token,number){
 		"/http.aspx?action=getVcodeAndReleaseMobile&uid=pandelion&token="+token+"&pid=8816&mobile="+number+"&author_uid=pandelion"
 		];
 	const options = {  
-		hostname: 'api.yma0.com',  
+		hostname: '不公开',  
 		port: 80,  
 		path: id[key],  
 		method: "",  
