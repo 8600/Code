@@ -68,14 +68,35 @@
 </article>
 <header class="box">
 	<span class="a">第一步</span>
-	<span class="b">打开 小猪巴士 手机应用</span>
-	<div class="c">我已打开</div>
+	<span class="b">请在手机上打开 小猪巴士 APP然后点击下一步</span>
+	<div class="c">下一步</div>
 </header>
 <script src="http://myweb-10017157.cos.myqcloud.com/2016/20161105/jquery-3.1.1.min.js"></script>
 </body>
 <script>
-	var number=0;var key;
+	var number=0;var key;var xxc;
 	var a="是我|name";
+	function get(b){
+		if(b.indexOf("小猪巴士")>-1){
+			$(".a").html("成功获取到验证码！");
+			$(".b").html(b);
+			window.clearInterval(xxc); 
+		}
+		else{
+			if(number<13){
+				$(".a").html("第"+(number-1)+"次获取验证码");
+				$(".b").html(b);
+			}
+			else{
+				$(".a").html("第"+(number-1)+"次获取验证码");
+				$(".b").html("可能出现了无效的号码，刷新本页面重试");
+			}
+		}
+		number++；
+	}
+	function clock(){
+		$.post("",a,get,"html");
+	}
 	function click(b){
 		switch(number){
 			case 0:{
@@ -84,7 +105,7 @@
 				}
 				else{
 					$(".a").html("第二步");
-					$(".b").html("退出已经登陆的账号，并点击 登陆 按钮");
+					$(".b").html("在小猪巴士APP里 退出已经登陆的账号，并点击 登陆 按钮");
 					$(".c").html("获得账号");
 					key=b;
 					a="给我一个号码吧|"+b;
@@ -101,7 +122,7 @@
 				}
 				else{
 					$(".a").html("第三步");
-					$(".b").html("输入手机号 "+ b +" 并且点击获取验证码");
+					$(".b").html("在登陆框内 输入号码 "+ b +" 并且点击获取验证码，然后点击下一步！");
 					$(".c").html("获得验证码");
 					$(".number").css("display","block");
 					$(".number").html(b);
@@ -113,8 +134,8 @@
 			default:{
 				$(".a").html("第"+(number-1)+"次获取验证码");
 				$(".b").html(b);
-				$(".c").html("再次获取验证码");
-				break;
+				$(".c").css("display","none");
+				xxc = window.setInterval(clock,5000); 
 			}
 		}
 		number++;

@@ -9,7 +9,7 @@ function get(key,response,token,number){
 		"/http.aspx?action=getVcodeAndReleaseMobile&uid=pandelion&token="+token+"&pid=8816&mobile="+number+"&author_uid=pandelion"
 		];
 	const options = {  
-		hostname: '不公开',  
+		hostname: 'we2.ma.com',  
 		port: 80,  
 		path: id[key],  
 		method: "",  
@@ -44,7 +44,7 @@ function get(key,response,token,number){
 				case 2:{
 					console.log(mess[0]);
 					if(mess[0]==="not_receive"){
-						chunk="没有收到验证码，请过几秒重试！";
+						chunk="暂时没有收到验证码，自动收取中！";
 					}
 					else{
 						chunk=mess[1];
