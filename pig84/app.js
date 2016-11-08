@@ -1,16 +1,15 @@
-var http = require("http");
-var fs = require("fs");
-
-function cutString(original,before,after,index){index=index||0;if(typeof index==="number"){var P=original.indexOf(before,index);if(P>-1){if(after){var f=original.indexOf(after,P+1);if(f>-1){return original.slice(P+before.toString().length,f);}else{console.error("owo [在文本中找不到 参数三 "+after+"]");}}else{return original.slice(P+before.toString().length);}}else{console.error("owo [在文本中找不到 参数一 "+before+"]");}}else{console.error("owo [sizeTransition:"+index+"不是一个整数!]");}}
+"use strict";
+const http = require("http");
+const fs = require("fs");
 
 function get(key,response,token,number){
-	var id=[
+	const id=[
 		"/http.aspx?action=loginIn&uid=pandelion&pwd=mmit7750",
 		"/http.aspx?action=getMobilenum&uid=pandelion&token="+token+"&pid=8816&lock=0&size=&mobile=",
 		"/http.aspx?action=getVcodeAndReleaseMobile&uid=pandelion&token="+token+"&pid=8816&mobile="+number+"&author_uid=pandelion"
 		];
-	var options = {  
-		hostname: '不公开',  
+	const options = {  
+		hostname: 'api.yma0.com',  
 		port: 80,  
 		path: id[key],  
 		method: "",  
@@ -18,7 +17,7 @@ function get(key,response,token,number){
 			'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'  
 		}  
 	}; 
-	var req = http.request(options, function (res) {  
+	const req = http.request(options, function (res) {  
 		res.setEncoding('utf8');  
 		res.on('data', function (chunk) { 
 			const mess=chunk.split("|");
@@ -77,7 +76,7 @@ http.createServer(function(request, response) {
         var postdata = "";
         request.addListener("data",function(postchunk){
             postdata += postchunk;
-        })
+        });
 
         request.addListener("end",function(){
             console.log(postdata);
@@ -93,8 +92,8 @@ http.createServer(function(request, response) {
 					}
 				}
 			}           
-        })
+        });
     }
     
-}).listen(process.env.PORT || 3000);
+}).listen(process.env.PORT || 3100);
 console.log("服务已启动！");
