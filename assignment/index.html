@@ -7,6 +7,8 @@
 </head>
 <style>
     html,body,ul,li,ol,dl,dd,dt,p,h1,h2,h3,h4,h5,h6,form,fieldset,legend,img{margin:0;padding:0}
+    img{border:none;}
+    li {list-style-type:none;}
     body{
         height: 100%;
         width: 100%;
@@ -18,77 +20,120 @@
         background: -webkit-gradient(linear, 0% 0%, 0% 100%,from(#2b90c9), to(#00b8f3));
         background: -webkit-linear-gradient(left, #2b90c9, #00b8f3);
         background: -o-linear-gradient(left, #2b90c9, #00b8f3);
-        height: 130px;
-        line-height: 130px;
+        height: 100px;
+        line-height: 100px;
         color: white;
     }
     section{
         background-color:white;
         width:100%;
         overflow:auto;
-        top:130px;
+        top:100px;
         position:absolute;
         z-index:10;
-        bottom:150px;
-    }
-    footer{
-        height:150px;
-        background-color:#f8f8f8;
-        width:100%;
-        position:absolute;
-        z-index:200;
         bottom:0;
-        text-align:center;
-        border-top: 1px solid gray;
     }
     header .fa-angle-left{
-        line-height: 130px;
-        height: 130px;
         float: left;
         font-size:400%;
-        padding: 0 30px;
+        padding: 9px 30px;
         font-weight: bold;
     }
     header .switch{
         margin: 0 auto;
-        width: 500px;
-        height: 85px;
-        border: 3px solid white;
+        width: 478px;
+        height: 60px;
+        border: 2px solid white;
         position: relative;
         top: 20px;
-        border-radius: 25px;
-        font-size: xx-large;
+        border-radius: 16px;
+        font-size: 28px;
     }
     .switch .switch_member{
-        width: 33%;
+        width: 158px;
         height: 100%;
         float: left;
-        line-height: 85px;
+        line-height: 60px;
         text-align: center;
+    }
+    .switch .switch_1{
+        border-top-left-radius: 14px;
+        border-bottom-left-radius: 14px;
     }
     .switch .switch_2{
         border-left: 2px solid white;
         border-right: 2px solid white;
     }
+    .switch .switch_3{
+        border-top-right-radius: 14px;
+        border-bottom-right-radius: 14px;
+    }
     .switch .is_active{
-        color: blue;
+        color: #2694cd;
         background-color: white;
     }
-    footer .tab{
-        float: left;
-        background-color: #f7f7f7;
+    .box .card{
         height: 100%;
-        width: 25%;
-        font-size: 400%;
-        color: #9c9c9c;
-        padding-top: 10px;
+        width: 100%;
     }
-    footer .tab .fa{
-        line-height: 100px;
-        height: 100px;
+    .box .i{
+        position: absolute;
+        float: left;
     }
-    footer .tab .tab_name{
-        font-size: 30px;
+    .box .item{
+        height: 162px;
+        border-bottom: 1px solid #d6d6d6;
+        position: relative;
+    }
+    .box .item .title{
+        font-size: 40px;
+        color: #595959;
+        top: 43px;
+        left: 20px;
+        font-weight: 500;
+    }
+    .box .item .time{
+        font-size: 32px;
+        left: 20px;
+        bottom: 30px;
+        color: #aaaaaa;
+    }
+    .box .item .name{
+        font-size: 24px;
+        bottom: 14px;
+        right: 30px;
+        color: #595959;
+    }
+    .box .item .assign{
+        font-size: 18px;
+        bottom: 14px;
+        right: 119px;
+        color: #aaaaaa;
+    }
+    .box .item .user_img{
+        top: 20px;
+        right: 20px;
+        width: 90px;
+        height: 90px;
+        border-radius: 15px;
+    }
+    .box .item .fa-sort-asc{
+        font-size: 24px;
+        font-weight: bold;
+        color: red;
+        margin-left: 13px;
+        position: relative;
+        bottom: 9px;
+    }
+    .box .item .new{
+        background-color: red;
+        border-radius: 7px;
+        color: white;
+        font-size: 19px;
+        margin-left: 13px;
+        padding: 4px;
+        position: relative;
+        bottom: 9px;
     }
 </style>
 <body>
@@ -100,27 +145,52 @@
             <div class="switch_member switch_3">完成任务</div>
         </div>
     </header>
-    <section>
-
+    <section class="box">
+        <ul class="card">
+            <li class="item">
+                <span class="i title">信源豆豆PC项目改版<span class="fa fa-sort-asc ">TOP</span></span>
+                <span class="i time fa fa-clock-o "> 2016.11.06 16:05:26</span>
+                <span class="i name">王晓红</span>
+                <span class="i assign">指派人:</span>
+                <img class="i user_img" src="img/eg_tulip.png"/>
+            </li>
+            <li class="item">
+                <span class="i title">晚上聚餐<span class="new">NEW</span></span>
+                <span class="i time fa fa-clock-o "> 2016.11.06 16:05:26</span>
+                <span class="i name">杨伦</span>
+                <span class="i assign">指派人:</span>
+                <img class="i user_img" src="img/eg_tulip.png"/>
+            </li>
+            <li class="item">
+                <span class="i title">手机端任务功能设计<span class="new">NEW</span></span>
+                <span class="i time fa fa-clock-o "> 2016.11.06 16:05:26</span>
+                <span class="i name">罗进</span>
+                <span class="i assign">指派人:</span>
+                <img class="i user_img" src="img/eg_tulip.png"/>
+            </li>
+            <li class="item">
+                <span class="i title">调整群设置UI，参考微信</span>
+                <span class="i time fa fa-clock-o "> 2016.11.06 16:05:26</span>
+                <span class="i name">卢文科</span>
+                <span class="i assign">指派人:</span>
+                <img class="i user_img" src="img/eg_tulip.png"/>
+            </li>
+            <li class="item">
+                <span class="i title">信源豆豆PC项目改版</span>
+                <span class="i time fa fa-clock-o "> 2016.11.06 16:05:26</span>
+                <span class="i name">王晓红</span>
+                <span class="i assign">指派人:</span>
+                <img class="i user_img" src="img/eg_tulip.png"/>
+            </li>
+            <li class="item">
+                <span class="i title">晚上聚餐</span>
+                <span class="i time fa fa-clock-o "> 2016.11.06 16:05:26</span>
+                <span class="i name">送达</span>
+                <span class="i assign">指派人:</span>
+                <img class="i user_img" src="img/eg_tulip.png"/>
+            </li>
+        </ul>
     </section>
-    <footer>
-        <div class="tab">
-            <div class="fa fa-comment-o comment"></div>
-            <div class="tab_name">信源豆豆</div>
-        </div>
-        <div class="tab">
-            <div class="fa fa-address-book-o address"></div>
-            <div class="tab_name">联系人</div>
-        </div>
-        <div class="tab">
-            <div class="fa fa-briefcase briefcase"></div>
-            <div class="tab_name">应用</div>
-        </div>
-        <div class="tab">
-            <div class="fa fa-user-o user"></div>
-            <div class="tab_name">我</div>
-        </div>
-
-    </footer>
+    <footer></footer>
 </body>
 </html>
