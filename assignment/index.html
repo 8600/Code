@@ -24,6 +24,8 @@
         height: 50px;
         line-height: 50px;
         color: white;
+        overflow: hidden;
+        min-width: 300px;
     }
     section{
         background-color:white;
@@ -50,6 +52,7 @@
         border-radius: 25px;
         font-size: small;
         overflow: hidden;
+        min-width: 233px;
     }
     .switch .switch_member{
         width: 32.743%;
@@ -78,6 +81,9 @@
         height: 14%;
         border-bottom: 1px solid #d6d6d6;
         position: relative;
+        max-height: 100px;
+        min-height: 80px;
+        min-width: 95px;
     }
     .box .item .title{
         font-size: 120%;
@@ -89,7 +95,7 @@
     .box .item .time{
         font-size: 100%;
         left: 20px;
-        bottom: 14px;
+        bottom: 12%;
         color: #aaaaaa;
     }
     .box .item .name{
@@ -116,7 +122,7 @@
         max-height: 60px;
     }
     .box .item .fa-sort-asc{
-        font-size: 88%;
+        font-size: 70%;
         font-weight: bold;
         color: red;
         margin-left: 5px;
@@ -130,30 +136,6 @@
         padding: 2px;
         position: relative;
         bottom: 3px;
-    }
-    .ripple{
-        position:relative;overflow:hidden
-    }
-    .ripple:after{
-        content:"";
-        background-color: white;
-        display:block;
-        position:absolute;
-        border-radius:50%;
-        padding-top:240%;
-        padding-left:240%;
-        margin-top:-120%;
-        margin-left:-120%;
-        opacity:0;
-        transition:all 1s
-    }
-    .ripple:active:after{
-        padding-top:10%;
-        padding-left:90%;
-        margin-top:50%;
-        margin-left:50%;
-        opacity:1;
-        transition:0s;
     }
 </style>
 <body>
@@ -276,7 +258,7 @@
             $(".switch_member").click(function(){
                 var click =this;
                 $(".switch_member").removeClass("is_active");
-                setTimeout(function(){$(click).addClass("is_active");},600);
+                $(click).addClass("is_active");
                 tabClick(this.id);
             });
             tabClick("shoudao");
