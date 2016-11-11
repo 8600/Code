@@ -52,23 +52,15 @@
         overflow: hidden;
     }
     .switch .switch_member{
-        width: 32%;
+        width: 32.743%;
         height: 100%;
         float: left;
         text-align: center;
         line-height: 36px;
     }
-    .switch .switch_1{
-        border-top-left-radius: 14px;
-        border-bottom-left-radius: 14px;
-    }
     .switch .switch_2{
         border-left: 2px solid white;
         border-right: 2px solid white;
-    }
-    .switch .switch_3{
-        border-top-right-radius: 14px;
-        border-bottom-right-radius: 14px;
     }
     .switch .is_active{
         color: #2694cd;
@@ -139,64 +131,156 @@
         position: relative;
         bottom: 3px;
     }
+    .ripple{
+        position:relative;overflow:hidden
+    }
+    .ripple:after{
+        content:"";
+        background-color: white;
+        display:block;
+        position:absolute;
+        border-radius:50%;
+        padding-top:240%;
+        padding-left:240%;
+        margin-top:-120%;
+        margin-left:-120%;
+        opacity:0;
+        transition:all 1s
+    }
+    .ripple:active:after{
+        padding-top:10%;
+        padding-left:90%;
+        margin-top:50%;
+        margin-left:50%;
+        opacity:1;
+        transition:0s;
+    }
 </style>
 <body>
     <header>
         <nav class="fa fa-angle-left"></nav>
         <div class="switch">
-            <div class="switch_member switch_1 is_active">收到任务</div>
-            <div class="switch_member switch_2">指派任务</div>
-            <div class="switch_member switch_3">完成任务</div>
+            <div id="shoudao" class="switch_member btn btn-lg ripple switch_1 is_active">收到任务</div>
+            <div id="zhipai" class="switch_member btn btn-lg ripple switch_2">指派任务</div>
+            <div id="wancheng" class="switch_member btn btn-lg ripple switch_3">完成任务</div>
         </div>
     </header>
     <section class="box">
-        <ul class="card">
-            <li class="item">
-                <span class="i title">信源豆豆PC项目改版<span class="fa fa-sort-asc ">TOP</span></span>
-                <span class="i time fa fa-clock-o "> 2016.11.06 16:05:26</span>
-                <span class="i name">王晓红</span>
-                <span class="i assign">指派人:</span>
-                <img class="i user_img" src="img/eg_tulip.png"/>
-            </li>
-            <li class="item">
-                <span class="i title">晚上聚餐<span class="new">NEW</span></span>
-                <span class="i time fa fa-clock-o "> 2016.11.06 16:05:26</span>
-                <span class="i name">杨伦</span>
-                <span class="i assign">指派人:</span>
-                <img class="i user_img" src="img/eg_tulip.png"/>
-            </li>
-            <li class="item">
-                <span class="i title">手机端任务功能设计<span class="new">NEW</span></span>
-                <span class="i time fa fa-clock-o "> 2016.11.06 16:05:26</span>
-                <span class="i name">罗进</span>
-                <span class="i assign">指派人:</span>
-                <img class="i user_img" src="img/eg_tulip.png"/>
-            </li>
-            <li class="item">
-                <span class="i title">调整群设置UI，参考微信</span>
-                <span class="i time fa fa-clock-o "> 2016.11.06 16:05:26</span>
-                <span class="i name">卢文科</span>
-                <span class="i assign">指派人:</span>
-                <img class="i user_img" src="img/eg_tulip.png"/>
-            </li>
-            <li class="item">
-                <span class="i title">信源豆豆PC项目改版</span>
-                <span class="i time fa fa-clock-o "> 2016.11.06 16:05:26</span>
-                <span class="i name">王晓红</span>
-                <span class="i assign">指派人:</span>
-                <img class="i user_img" src="img/eg_tulip.png"/>
-            </li>
-            <li class="item">
-                <span class="i title">晚上聚餐</span>
-                <span class="i time fa fa-clock-o "> 2016.11.06 16:05:26</span>
-                <span class="i name">送达</span>
-                <span class="i assign">指派人:</span>
-                <img class="i user_img" src="img/eg_tulip.png"/>
-            </li>
-            <a href="ooo.html">22222</a>
-        </ul>
+        <ul class="card"></ul>
     </section>
     <footer></footer>
-    <script type="text/javascript" src="js/vrv-jssdk-v1.4.min.js"></script>
+    <script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
+    <script>
+        var moni={
+            shoudao:{
+                list1:{
+                    title:"信源豆豆PC项目改版",
+                    top:true,
+                    new:false,
+                    time:" 2016.11.06 16:05:26",
+                    name:"王晓红",
+                    user_img:"img/eg_tulip.png"
+                },
+                list2:{
+                    title:"晚上聚餐",
+                    top:false,
+                    new:true,
+                    time:" 2016.11.06 16:05:26",
+                    name:"杨伦",
+                    user_img:"img/eg_tulip.png"
+                },
+                list3:{
+                    title:"手机端任务功能设计",
+                    top:false,
+                    new:true,
+                    time:" 2016.11.06 16:05:26",
+                    name:"罗进",
+                    user_img:"img/eg_tulip.png"
+                },
+                list4:{
+                    title:"调整群设置UI，参考微信",
+                    top:false,
+                    new:false,
+                    time:" 2016.11.06 16:05:26",
+                    name:"卢文科",
+                    user_img:"img/eg_tulip.png"
+                },
+                list5:{
+                    title:"信源豆豆PC项目改版",
+                    top:false,
+                    new:false,
+                    time:" 2016.11.06 16:05:26",
+                    name:"王晓红",
+                    user_img:"img/eg_tulip.png"
+                },
+                list6:{
+                    title:"晚上聚餐",
+                    top:false,
+                    new:false,
+                    time:" 2016.11.06 16:05:26",
+                    name:"送达",
+                    user_img:"img/eg_tulip.png"
+                }
+            },
+            zhipai:{
+                list1:{
+                    title:"信源豆豆PC项目改版",
+                    top:true,
+                    new:false,
+                    time:" 2016.11.06 16:05:26",
+                    name:"王晓红",
+                    user_img:"img/eg_tulip.png"
+                },
+                list2:{
+                    title:"晚上聚餐",
+                    top:true,
+                    new:false,
+                    time:" 2016.11.06 16:05:26",
+                    name:"杨伦",
+                    user_img:"img/eg_tulip.png"
+                },
+                list3:{
+                    title:"手机端任务功能设计",
+                    top:true,
+                    new:false,
+                    time:" 2016.11.06 16:05:26",
+                    name:"罗进",
+                    user_img:"img/eg_tulip.png"
+                }
+            },
+            wancheng:{
+                list1:{
+                    title:"信源豆豆PC项目改版",
+                    top:true,
+                    new:false,
+                    time:" 2016.11.06 16:05:26",
+                    name:"王晓红",
+                    user_img:"img/eg_tulip.png"
+                }
+            }
+        };
+        function tabClick(name) {
+            $(".card").empty();
+            $.each(moni[name],function (a,JSON) {
+                var New="";var Top="";
+                if(JSON.new){
+                    New='<span class="new">NEW</span>';
+                }
+                if(JSON.top){
+                    Top='<span class="fa fa-sort-asc">TOP</span>';
+                }
+                $(".card").append('<li class="item"> <span class="i title">'+JSON.title+New+Top+'</span> <span class="i time fa fa-clock-o ">'+JSON.time+'</span> <span class="i name">'+JSON.name+'</span> <span class="i assign">指派人:</span> <img class="i user_img" src="'+JSON.user_img+'"> </li>');
+            });
+        }
+        $(function () {
+            $(".switch_member").click(function(){
+                var click =this;
+                $(".switch_member").removeClass("is_active");
+                setTimeout(function(){$(click).addClass("is_active");},600);
+                tabClick(this.id);
+            });
+            tabClick("shoudao");
+        })
+    </script>
 </body>
 </html>
