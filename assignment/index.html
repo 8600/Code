@@ -167,11 +167,8 @@
             var title =owo.text.cutStringArray(moni,"body\':\'","\',");
             var time = owo.text.cutStringArray(moni,"sendTime = ",",");
             var name = owo.text.cutStringArray(moni,"fromID = ",",");
-            console.log(owo.text.cutStringArray(moni,"sendTime = ",","));
-            console.log(owo.time.getDateTimeStamp("201611141628172"));
-            $(".card").empty();
             for(var i =0;i<title.length;i++){
-                $(".card").append('<li class="item"> <span class="i title">'+title[i]+'</span> <span class="i time fa fa-clock-o ">'+owo.time.getDateDiff("1451581261")+'</span> <span class="i name">'+name[i]+'</span> <span class="i assign">指派人:</span> <img class="i user_img" src="'+"img/eg_tulip.png"+'"> </li>');
+                $(".card").append('<li class="item"> <span class="i title">'+title[i]+'</span> <span class="i time fa fa-clock-o ">'+owo.time.getDateDiff(time[i])+'</span> <span class="i name">'+name[i]+'</span> <span class="i assign">指派人:</span> <img class="i user_img" src="'+"img/eg_tulip.png"+'"> </li>');
 
             }
         }
