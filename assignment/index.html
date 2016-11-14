@@ -79,7 +79,7 @@
     }
     .box .item{
         height: 14%;
-        border-bottom: 1px solid #d6d6d6;
+        border-bottom: 1px solid #ece9e9;
         position: relative;
         max-height: 100px;
         min-height: 80px;
@@ -117,7 +117,7 @@
         right: 20px;
         width: 14%;
         height: 61%;
-        border-radius: 15px;
+        border-radius: 6px;
         max-width: 60px;
         max-height: 60px;
     }
@@ -133,9 +133,15 @@
         color: white;
         font-size: 50%;
         margin-left: 8px;
-        padding: 2px;
+        padding: 1px 2px;
         position: relative;
         bottom: 3px;
+    }
+    .lalalal{
+        width: 100px;
+        height:40px;
+        background-color: blue;
+        float: left;
     }
 </style>
 <body>
@@ -152,108 +158,24 @@
     </section>
     <footer></footer>
     <script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
+    <script type="text/javascript" src="js/vrv-jssdk-v1.3.js"></script>
+    <script type="text/javascript" src="js/owo.js"></script>
     <script>
-        var moni={
-            shoudao:{
-                list1:{
-                    title:"信源豆豆PC项目改版",
-                    top:true,
-                    new:false,
-                    time:" 2016.11.06 16:05:26",
-                    name:"王晓红",
-                    user_img:"img/eg_tulip.png"
-                },
-                list2:{
-                    title:"晚上聚餐",
-                    top:false,
-                    new:true,
-                    time:" 2016.11.06 16:05:26",
-                    name:"杨伦",
-                    user_img:"img/eg_tulip.png"
-                },
-                list3:{
-                    title:"手机端任务功能设计",
-                    top:false,
-                    new:true,
-                    time:" 2016.11.06 16:05:26",
-                    name:"罗进",
-                    user_img:"img/eg_tulip.png"
-                },
-                list4:{
-                    title:"调整群设置UI，参考微信",
-                    top:false,
-                    new:false,
-                    time:" 2016.11.06 16:05:26",
-                    name:"卢文科",
-                    user_img:"img/eg_tulip.png"
-                },
-                list5:{
-                    title:"信源豆豆PC项目改版",
-                    top:false,
-                    new:false,
-                    time:" 2016.11.06 16:05:26",
-                    name:"王晓红",
-                    user_img:"img/eg_tulip.png"
-                },
-                list6:{
-                    title:"晚上聚餐",
-                    top:false,
-                    new:false,
-                    time:" 2016.11.06 16:05:26",
-                    name:"送达",
-                    user_img:"img/eg_tulip.png"
-                }
-            },
-            zhipai:{
-                list1:{
-                    title:"信源豆豆PC项目改版",
-                    top:true,
-                    new:false,
-                    time:" 2016.11.06 16:05:26",
-                    name:"王晓红",
-                    user_img:"img/eg_tulip.png"
-                },
-                list2:{
-                    title:"晚上聚餐",
-                    top:true,
-                    new:false,
-                    time:" 2016.11.06 16:05:26",
-                    name:"杨伦",
-                    user_img:"img/eg_tulip.png"
-                },
-                list3:{
-                    title:"手机端任务功能设计",
-                    top:true,
-                    new:false,
-                    time:" 2016.11.06 16:05:26",
-                    name:"罗进",
-                    user_img:"img/eg_tulip.png"
-                }
-            },
-            wancheng:{
-                list1:{
-                    title:"信源豆豆PC项目改版",
-                    top:true,
-                    new:false,
-                    time:" 2016.11.06 16:05:26",
-                    name:"王晓红",
-                    user_img:"img/eg_tulip.png"
-                }
-            }
-        };
+        var moni="[TaskMsgBean { targetID = 4328629842, fromID = 4328626306, sendTime = 1479112095444, body = '{'body':'vjjjnb头像','msgBodyType':0}', msgID = 1279103, properties = TaskMsgPropertiesBean { timeZone = 32, timeTask = 201611141628172, isFinish = 0, isTask = 1, isRead = }, relateUsers = [], top = 0 }, TaskMsgBean { targetID = 4328629842, fromID = 4328626306, sendTime = 1479112255331, body = '{'body':'测试1','msgBodyType':0}', msgID = 1279144, properties = TaskMsgPropertiesBean { timeZone = 32, timeTask = 201611141630569, isFinish = 0, isTask = 1, isRead = }, relateUsers = [], top = 0 } ]";
+        //任务切换卡点击事件
         function tabClick(name) {
+            var title =owo.text.cutStringArray(moni,"body\':\'","\',");
+            var time = owo.text.cutStringArray(moni,"sendTime = ",",");
+            var name = owo.text.cutStringArray(moni,"fromID = ",",");
+            console.log(owo.text.cutStringArray(moni,"sendTime = ",","));
+            console.log(owo.time.getDateTimeStamp("201611141628172"));
             $(".card").empty();
-            $.each(moni[name],function (a,JSON) {
-                var New="";var Top="";
-                if(JSON.new){
-                    New='<span class="new">NEW</span>';
-                }
-                if(JSON.top){
-                    Top='<span class="fa fa-sort-asc">TOP</span>';
-                }
-                $(".card").append('<li class="item"> <span class="i title">'+JSON.title+New+Top+'</span> <span class="i time fa fa-clock-o ">'+JSON.time+'</span> <span class="i name">'+JSON.name+'</span> <span class="i assign">指派人:</span> <img class="i user_img" src="'+JSON.user_img+'"> </li>');
-            });
+            for(var i =0;i<title.length;i++){
+                $(".card").append('<li class="item"> <span class="i title">'+title[i]+'</span> <span class="i time fa fa-clock-o ">'+owo.time.getDateDiff("1451581261")+'</span> <span class="i name">'+name[i]+'</span> <span class="i assign">指派人:</span> <img class="i user_img" src="'+"img/eg_tulip.png"+'"> </li>');
+
+            }
         }
+        //任务切换卡点击事件
         $(function () {
             $(".switch_member").click(function(){
                 var click =this;
@@ -262,7 +184,43 @@
                 tabClick(this.id);
             });
             tabClick("shoudao");
-        })
+            $(".item").click(function(){
+                window.location.href="details.html";
+            });
+        });
+        vrv.ready(function(){
+            getOrganization();
+        });
+        function getReceiveTask() {
+            vrv.jssdk.getReceiveTask({
+                success: function (res) {
+                    document.write(res);
+                }
+            })
+        }
+        function getAppointedTask() {
+            vrv.jssdk.getAppointedTask({
+                success: function (res) {
+                    document.write(res);
+                }
+            })
+        }
+        function getCompletedTask() {
+            vrv.jssdk.getReceiveTask({
+                success: function (res) {
+                    document.write(res);
+                }
+            })
+        }
+        function getUserProfile() {
+            vrv.jssdk.getReceiveTask({
+                userID:4328632689,
+                success: function (res) {
+                    document.write(res);
+                }
+            })
+        }
+
     </script>
 </body>
 </html>
