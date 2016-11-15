@@ -46,24 +46,32 @@
         margin: 0 auto;
         width: 60%;
         height: 65%;
-        border: 2px solid white;
         position: relative;
         top: 13%;
-        border-radius: 25px;
         font-size: small;
         overflow: hidden;
         min-width: 233px;
+        padding: 2px;
     }
     .switch .switch_member{
-        width: 32.743%;
-        height: 100%;
+        width: 31%;
+        height: 93%;
         float: left;
         text-align: center;
         line-height: 36px;
+        border: 2px solid white;
+    }
+    .switch .switch_1{
+        border-bottom-left-radius: 15px;
+        border-top-left-radius: 15px;
     }
     .switch .switch_2{
-        border-left: 2px solid white;
-        border-right: 2px solid white;
+        border-left: none;
+        border-right: none;
+    }
+    .switch .switch_3{
+        border-bottom-right-radius: 15px;
+        border-top-right-radius: 15px;
     }
     .switch .is_active{
         color: #2694cd;
@@ -162,32 +170,37 @@
     <script type="text/javascript" src="js/owo.js"></script>
     <script>
         var moni="[TaskMsgBean { targetID = 4328629842, fromID = 4328626306, sendTime = 1479112095444, body = '{'body':'vjjjnb头像','msgBodyType':0}', msgID = 1279103, properties = TaskMsgPropertiesBean { timeZone = 32, timeTask = 201611141628172, isFinish = 0, isTask = 1, isRead = }, relateUsers = [], top = 0 }, TaskMsgBean { targetID = 4328629842, fromID = 4328626306, sendTime = 1479112255331, body = '{'body':'测试1','msgBodyType':0}', msgID = 1279144, properties = TaskMsgPropertiesBean { timeZone = 32, timeTask = 201611141630569, isFinish = 0, isTask = 1, isRead = }, relateUsers = [], top = 0 } ]";
-        //任务切换卡点击事件
+        //------------------------------DOM加载完毕事件------------------------------
         function tabClick(name) {
             var title =owo.text.cutStringArray(moni,"body\':\'","\',");
             var time = owo.text.cutStringArray(moni,"sendTime = ",",");
             var name = owo.text.cutStringArray(moni,"fromID = ",",");
             for(var i =0;i<title.length;i++){
-                $(".card").append('<li class="item"> <span class="i title">'+title[i]+'</span> <span class="i time fa fa-clock-o ">'+owo.time.getDateDiff(time[i])+'</span> <span class="i name">'+name[i]+'</span> <span class="i assign">指派人:</span> <img class="i user_img" src="'+"img/eg_tulip.png"+'"> </li>');
+                //测试头像传来数据
+                //getUserProfile(name[i]);
+
+                $(".card").append('<li class="item" onclick="itemClick(this)"> <span class="i title">'+title[i]+'</span> <span class="i time fa fa-clock-o ">'+owo.time.getDateDiff(time[i])+'</span> <span class="i name">'+name[i]+'</span> <span class="i assign">指派人:</span> <img class="i user_img" src="'+"img/eg_tulip.png"+'"> </li>');
 
             }
         }
-        //任务切换卡点击事件
+        //------------------------------DOM加载完毕事件------------------------------
         $(function () {
+            //任务切换
             $(".switch_member").click(function(){
                 var click =this;
                 $(".switch_member").removeClass("is_active");
                 $(click).addClass("is_active");
                 tabClick(this.id);
             });
+            //首页面加载 收到任务 列表
             tabClick("shoudao");
-            $(".item").click(function(){
-                window.location.href="details.html";
-            });
         });
-        vrv.ready(function(){
-            getOrganization();
-        });
+        //------------------------------项目列表点击事件------------------------------
+        function itemClick(dom) {
+            window.location.href="details.html";
+        }
+        //----------------------------------VRVSDK----------------------------------
+        vrv.ready(function(){getOrganization();});
         function getReceiveTask() {
             vrv.jssdk.getReceiveTask({
                 success: function (res) {
@@ -209,15 +222,16 @@
                 }
             })
         }
-        function getUserProfile() {
+        //获得用户头像
+        function getUserProfile(userID) {
             vrv.jssdk.getReceiveTask({
-                userID:4328632689,
+                userID:userID,
                 success: function (res) {
-                    document.write(res);
+                    console.log(res);
                 }
             })
         }
-
+        //----------------------------------VRVSDK----------------------------------
     </script>
 </body>
 </html>
