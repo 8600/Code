@@ -251,8 +251,17 @@ var owo = {
 		//把时间戳转化为几天前,几小时前，几分钟前
 		// console.log(getDateDiff(getDateTimeStamp("2016/1/20 19:59:30"))); ->9月前
 		getDateDiff:function(dateTimeStamp){let result; const diffValue =  new Date().getTime() - dateTimeStamp;if(diffValue < 0){return;}const monthC =diffValue/2592000000;const weekC =diffValue/(7*86400000);const dayC =diffValue/86400000;const hourC =diffValue/3600000;const minC =diffValue/60000;if(monthC>=1){result="" + parseInt(monthC) + "月前";}else if(weekC>=1){result="" + parseInt(weekC) + "周前";}else if(dayC>=1){result=""+ parseInt(dayC) +"天前";}else if(hourC>=1){result=""+ parseInt(hourC) +"小时前";}else if(minC>=1){result=""+ parseInt(minC) +"分钟前";}else result="刚刚";return result;},
-		
-	}
+		//时间戳转时间 2016/11/14 下午4:28 
+		getLocalTime:function(nS) {return new Date(parseInt(nS)).toLocaleString().replace(/:\d{1,2}$/,' ');},
+        //时间戳转时间 2016/11/14 下午4:30:55
+        getLocalTime2:function(nS) { var now=new Date(parseInt(nS)); return "20"+now.getYear()+"-"+now.getMonth()+1+"-"+now.getDate()+" "+now.getHours()+":"+now.getMinutes()+":"+now.getSeconds(); },  
+
+	},
+    parameter:{
+        //根据参数名获取URL中的参数
+        GetQueryString:function (name){const reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");const r = window.location.search.substr(1).match(reg);if(r!==null)return  decodeURI(r[2]); return null;},
+
+    }
 };
 
 

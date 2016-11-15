@@ -250,17 +250,12 @@
     </header>
     <section class="box">
         <ul class="card">
-            <li class="item">
-                <span class="i title">信源豆豆PC项目改版<span class="fa fa-sort-asc">TOP</span></span>
-                <span class="i time fa fa-clock-o "> 2016.11.06 16:05:26</span>
-                <span class="i name">王晓红</span> <span class="i assign">指派人:</span>
-                <img class="i user_img" src="img/eg_tulip.png">
-            </li>
+            <li class="item"></li>
         </ul>
         <div class="button">
             <span class="fa fa-comment-o">回复</span>
-            <span class="fa fa-thumb-tack">顶置</span>
-            <span class="fa fa-times">关闭</span>
+            <span id="overhead" class="fa fa-thumb-tack">顶置</span>
+            <span id="cancel" class="fa fa-times">关闭</span>
         </div>
         <ul class="chat-thread">
             <li>谢谢啊</li>
@@ -278,12 +273,53 @@
         </ul>
     </section>
     <script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
+    <script type="text/javascript" src="js/owo.js"></script>
     <script>
+        //------------------------------DOM加载完毕事件------------------------------
         $(function () {
-            $(".fa").click(function(){
+            var top="";
+            //判断是否顶置
+            if(true){top='<span class="fa fa-sort-asc">TOP</span>';}
+            //追加条目
+            $(".item").append('<span class="i title">'+owo.parameter.GetQueryString("title")+top+'</span>');
+            $(".item").append('<span class="i time fa fa-clock-o ">'+owo.time.getDateDiff(owo.parameter.GetQueryString("time"))+'</span>');
+            $(".item").append('<span class="i name">'+owo.parameter.GetQueryString("name")+'</span> <span class="i assign">指派人:</span>');
+            $(".item").append('<img class="i user_img" src="'+owo.parameter.GetQueryString("img")+'">');
+            //顶置按钮点击事件
+            $("#overhead").click(function(){
+                //overheadTask(ID)
+                alert("置顶成功！");
+            });
+            //关闭按钮点击事件
+            $("#cancel").click(function(){
+                //cancelTask(ID)
+                alert("关闭成功！");
+            });
+            //返回按钮点击事件
+            $(".fa-angle-left").click(function(){
                 window.location.href="index.html";
             });
-        })
+        });
+        //----------------------------------VRVSDK----------------------------------
+        vrv.ready(function(){});
+        //根据任务ID顶置任务
+        function overheadTask(taskID) {
+            vrv.jssdk.getReceiveTask({
+                taskID:taskID,
+                success: function (res) {
+                    return res;
+                }
+            })
+        }
+        //根据任务ID取消任务
+        function cancelTask(taskID) {
+            vrv.jssdk.getReceiveTask({
+                taskID:taskID,
+                success: function (res) {
+                    return res;
+                }
+            })
+        }
     </script>
 </body>
 </html>

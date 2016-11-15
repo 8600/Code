@@ -58,7 +58,7 @@
         height: 93%;
         float: left;
         text-align: center;
-        line-height: 36px;
+        line-height: 32px;
         border: 2px solid white;
     }
     .switch .switch_1{
@@ -169,18 +169,21 @@
     <script type="text/javascript" src="js/vrv-jssdk-v1.3.js"></script>
     <script type="text/javascript" src="js/owo.js"></script>
     <script>
+        var title;var time;var sendUserId;var userName=new Array();var msgID;var img=new Array();
+        //**************************************测试用的数据**************************************
+        //列表数据
         var moni="[TaskMsgBean { targetID = 4328629842, fromID = 4328626306, sendTime = 1479112095444, body = '{'body':'vjjjnb头像','msgBodyType':0}', msgID = 1279103, properties = TaskMsgPropertiesBean { timeZone = 32, timeTask = 201611141628172, isFinish = 0, isTask = 1, isRead = }, relateUsers = [], top = 0 }, TaskMsgBean { targetID = 4328629842, fromID = 4328626306, sendTime = 1479112255331, body = '{'body':'测试1','msgBodyType':0}', msgID = 1279144, properties = TaskMsgPropertiesBean { timeZone = 32, timeTask = 201611141630569, isFinish = 0, isTask = 1, isRead = }, relateUsers = [], top = 0 } ]";
-        //------------------------------DOM加载完毕事件------------------------------
+        //-------------------------------切换列表事件-------------------------------
         function tabClick(name) {
-            var title =owo.text.cutStringArray(moni,"body\':\'","\',");
-            var time = owo.text.cutStringArray(moni,"sendTime = ",",");
-            var name = owo.text.cutStringArray(moni,"fromID = ",",");
+            title =owo.text.cutStringArray(moni,"body\':\'","\',");
+            time = owo.text.cutStringArray(moni,"sendTime = ",",");
+            sendUserId = owo.text.cutStringArray(moni,"fromID = ",",");
+            msgID = owo.text.cutStringArray(moni,"msgID = ",",");
             for(var i =0;i<title.length;i++){
-                //测试头像传来数据
-                //getUserProfile(name[i]);
-
-                $(".card").append('<li class="item" onclick="itemClick(this)"> <span class="i title">'+title[i]+'</span> <span class="i time fa fa-clock-o ">'+owo.time.getDateDiff(time[i])+'</span> <span class="i name">'+name[i]+'</span> <span class="i assign">指派人:</span> <img class="i user_img" src="'+"img/eg_tulip.png"+'"> </li>');
-
+                //模拟使用getUserProfile(name[i])获得用户头像，用户名数据
+                userName[i] = "测试";
+                img[i] = "http://myweb-10017157.cos.myqcloud.com/2016/20161115/eg_tulip.png";
+                $(".card").append('<li class="item" ID='+i+' onclick="itemClick(this)"> <span class="i title">'+title[i]+'</span> <span class="i time fa fa-clock-o ">'+owo.time.getLocalTime2(time[i])+'</span> <span class="i name">'+userName[i]+'</span> <span class="i assign">指派人:</span> <img class="i user_img" src="'+img[i]+'"> </li>');
             }
         }
         //------------------------------DOM加载完毕事件------------------------------
@@ -197,10 +200,11 @@
         });
         //------------------------------项目列表点击事件------------------------------
         function itemClick(dom) {
-            window.location.href="details.html";
+            var id =dom.getAttribute("ID");
+            window.location.href="details.html?"+"title="+title[id]+"&time="+time[id]+"&name="+userName[id]+"&msgID="+msgID[id]+"&img="+img[id];
         }
         //----------------------------------VRVSDK----------------------------------
-        vrv.ready(function(){getOrganization();});
+        vrv.init({debug:false});
         function getReceiveTask() {
             vrv.jssdk.getReceiveTask({
                 success: function (res) {
@@ -222,12 +226,12 @@
                 }
             })
         }
-        //获得用户头像
+        //获得用户头像,名称信息
         function getUserProfile(userID) {
             vrv.jssdk.getReceiveTask({
                 userID:userID,
                 success: function (res) {
-                    console.log(res);
+                    return res;
                 }
             })
         }
