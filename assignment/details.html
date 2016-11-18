@@ -58,15 +58,14 @@
         bottom: 0;
     }
     .box .card{
-        height: 13%;
+        height: 15%;
         background-color: white;
     }
     .box .item{
-        height: 14%;
         border-bottom: 1px solid #d6d6d6;
         position: relative;
         max-height: 100px;
-        min-height: 80px;
+        min-height: 92px;
         min-width: 95px;
     }
     .box .item .title{
@@ -83,17 +82,17 @@
         color: #aaaaaa;
     }
     .box .item .name{
-        font-size: 88%;
-        bottom: 1px;
-        right: 5px;
-        color: #595959;
+        font-size: 75%;
+        bottom: 7px;
+        right: -7px;
+        color: #aaaaaa;
         width: 70px;
         text-align: center;
     }
     .box .item .assign{
         font-size: 75%;
-        bottom: 3px;
-        right: 64px;
+        bottom: 7px;
+        right: 43px;
         color: #aaaaaa;
     }
     .box .item .user_img{
@@ -121,7 +120,7 @@
     }
     .button{
         float: right;
-        padding-top: 7px;
+        padding-top: 15px;
         padding-right: 8px;
         color: #9f9f9f;
     }
@@ -134,7 +133,7 @@
         padding-right: 4px;
     }
     .chat-thread {
-        margin: 30px auto 0 auto;
+        margin: 45px auto 0 auto;
         padding: 0 10px 0 10px;
         list-style: none;
         overflow-y: scroll;
@@ -277,11 +276,8 @@
     <script>
         //------------------------------DOM加载完毕事件------------------------------
         $(function () {
-            var top="";
-            //判断是否顶置
-            if(true){top='<span class="fa fa-sort-asc">TOP</span>';}
             //追加条目
-            $(".item").append('<span class="i title">'+owo.parameter.GetQueryString("title")+top+'</span>');
+            $(".item").append('<span class="i title">'+owo.parameter.GetQueryString("title")+'</span>');
             $(".item").append('<span class="i time fa fa-clock-o ">'+owo.time.getDateDiff(owo.parameter.GetQueryString("time"))+'</span>');
             $(".item").append('<span class="i name">'+owo.parameter.GetQueryString("name")+'</span> <span class="i assign">指派人:</span>');
             $(".item").append('<img class="i user_img" src="'+owo.parameter.GetQueryString("img")+'">');
