@@ -65,6 +65,15 @@ vrv.android = {
 	closeView : function (a) {
 		android.closeView(vrv.util.pre(a))
 	},
+	overheadTask : function (a) {
+		android.overheadTask(vrv.util.pre(a))
+	},
+	cancelTask : function (a) {
+		android.cancelTask(vrv.util.pre(a))
+	},
+	readTaskMsg : function (a) {
+		android.readTaskMsg(vrv.util.pre(a))
+	},
 	getLanguage : function (a) {
 		android.getLanguage(vrv.util.pre(a))
 	},
@@ -141,6 +150,15 @@ vrv.ios = {
 	},
 	closeView : function (a) {
 		vrv.util.callIOS("closeView", a)
+	},
+	overheadTask : function (a) {
+		vrv.util.callIOS("overheadTask", a)
+	},
+	cancelTask : function (a) {
+		vrv.util.callIOS("cancelTask", a)
+	},
+	readTaskMsg : function (a) {
+		vrv.util.callIOS("readTaskMsg", a)
 	},
 	getLanguage : function (a) {
 		vrv.util.callIOS("getLanguage", a)

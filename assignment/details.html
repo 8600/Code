@@ -13,7 +13,7 @@
     body{
         height: 100%;
         width: 100%;
-        font-family: arial, 宋体;
+        font-family: arial;
     }
     header{
         background: -ms-linear-gradient(left, #2b90c9,  #00b8f3);
@@ -39,6 +39,7 @@
         right: 32px;
         float: right;
         width: 80%;
+        top: 3px;
     }
     .box .card{
         height: 100%;
@@ -58,28 +59,33 @@
         bottom: 0;
     }
     .box .card{
-        height: 15%;
+        height: 92px;
         background-color: white;
     }
     .box .item{
         border-bottom: 1px solid #d6d6d6;
         position: relative;
-        max-height: 100px;
-        min-height: 92px;
-        min-width: 95px;
+        height: 92px;
     }
     .box .item .title{
-        font-size: 120%;
+        font-size: 130%;
         color: #595959;
-        top: 20px;
+        top: 24px;
         left: 20px;
         font-weight: 400;
+    }
+    .fa-clock-o:before{
+        padding-right: 4px;
+        position: relative;
+        top: -1px;
+        font: normal normal normal 14px/1 FontAwesome;
     }
     .box .item .time{
         font-size: 100%;
         left: 20px;
-        bottom: 17%;
+        bottom: 14%;
         color: #aaaaaa;
+        font-family: arial;
     }
     .box .item .name{
         font-size: 75%;
@@ -134,7 +140,6 @@
     }
     .chat-thread {
         margin: 45px auto 0 auto;
-        padding: 0 10px 0 10px;
         list-style: none;
         overflow-y: scroll;
         overflow-x: hidden;
@@ -157,18 +162,17 @@
         top: 0;
         width: 50px;
         height: 50px;
-        border-radius: 50px;
+        border-radius: 5px;
         content: '';
     }
 
     /* Chat - Speech Bubble Arrow */
     .chat-thread li:after {
         position: absolute;
-        top: 15px;
+        top: 14px;
         content: '';
         width: 0;
         height: 0;
-        border-top: 15px solid rgba(25, 147, 147, 0.2);
     }
     .chat-thread li:first-child{
         margin-top: 10px;
@@ -185,14 +189,15 @@
     }
 
     .chat-thread li:nth-child(odd):before {
-        right: -70px;
+        right: -63px;
         background-image: url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEAYABgAAD/4QBoRXhpZgAATU0AKgAAAAgABAEaAAUAAAABAAAAPgEbAAUAAAABAAAARgEoAAMAAAABAAIAAAExAAIAAAASAAAATgAAAAAAAABgAAAAAQAAAGAAAAABUGFpbnQuTkVUIHYzLjUuMTAA/9sAQwAHBQUGBQQHBgUGCAcHCAoRCwoJCQoVDxAMERgVGhkYFRgXGx4nIRsdJR0XGCIuIiUoKSssKxogLzMvKjInKisq/9sAQwEHCAgKCQoUCwsUKhwYHCoqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioq/8AAEQgAMgAyAwEiAAIRAQMRAf/EAB8AAAEFAQEBAQEBAAAAAAAAAAABAgMEBQYHCAkKC//EALUQAAIBAwMCBAMFBQQEAAABfQECAwAEEQUSITFBBhNRYQcicRQygZGhCCNCscEVUtHwJDNicoIJChYXGBkaJSYnKCkqNDU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6g4SFhoeIiYqSk5SVlpeYmZqio6Slpqeoqaqys7S1tre4ubrCw8TFxsfIycrS09TV1tfY2drh4uPk5ebn6Onq8fLz9PX29/j5+v/EAB8BAAMBAQEBAQEBAQEAAAAAAAABAgMEBQYHCAkKC//EALURAAIBAgQEAwQHBQQEAAECdwABAgMRBAUhMQYSQVEHYXETIjKBCBRCkaGxwQkjM1LwFWJy0QoWJDThJfEXGBkaJicoKSo1Njc4OTpDREVGR0hJSlNUVVZXWFlaY2RlZmdoaWpzdHV2d3h5eoKDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uLj5OXm5+jp6vLz9PX29/j5+v/aAAwDAQACEQMRAD8A8wre0/w55qLLqM62ysMrEWAdh+PSl8M6fFLMbu5K7YziNT3b1/CqniRLq98UA2SlhHGobnA55FdbajHmZwxTnLlRtm78NabDGhs/tEwchmVfMGD0znvn0pqahoN3fCH+z0RcHcWiKY4745/KuUVtTtdSFtJCvmxHmN+317Gp5dTthGZXUSXPJJVsh1PUH1rP2rZt7GKOi1LwxHIv2jRg20jPks4b64b+h/OuZZWRyrqVZTggjBBrZ0PWftFwkA8xImTpu7gVJr1kpX7UhzJ0cZ5I9a0umtDJxcWYVFFFBJ1WlKkOmQASYyoYjZnk81aukuLHTP7YFtDeW6zJEFmyu4555H8PQemaz9NmR9PhO45C7T+HFa1rrk9iwSZ3vLJU+WyaVUCsDncMjJI64H41riYRVHmS7E4KbliOWT7nPePtPvbm8j1trWSyF3GpkgkYEbl4BBHTjHBrn49GkfRLnUpn2tBgtFj76k4GD/e749K63xb4gtdTtp4LeRismGVyOmDnpWBq2pXd74ZsdPjG2GCTdHDEnzSN/ebHLH+VeXBuyR7E4wu35EXhKKObVCRnMKMwY+hwAPz5rrJ7bzYXTfu3Ag5yKwfC+nNZvcPPJHvdQDGnJjOehPTPsOlb0zLFA8m/hVJ/SvXo0oundnhV6slU5UcjRRRXPY3Luk3giYwSHCscqfetfULXOlR3TXIhZ2ZYfLILHHDkjsO3PJPSuXqeC5aPzd5ZjIQdxOcEDFa+0fJyEKmvac5myyQWJlRZnkkTHytjoeuPepLaa9vi4ib7LbOMyFG5KjtnrVMabPd30gcrCjMSZGPQf1NbF0i29pHBAUlbABVT8pPqSOwrljDW53c+lrl/RWxvymyDAWPjsPSpdVnVF8iNsk8tz0HpVFLloowEYvJjBkIwB7AdhUGSxJJyT1JrpU2o8py1IwlJS6hRS0VAiKiiikUKKUUUUxC0ooooAKKKKQH/2Q==);
         top: -10px;
     }
 
     .chat-thread li:nth-child(odd):after {
-        border-right: 15px solid transparent;
-        right: -15px;
+        border-right: 10px solid transparent;
+        right: -9px;
+        border-top: 8px solid rgb(50, 176, 230);
     }
 
     .chat-thread li:nth-child(even) {
@@ -206,14 +211,15 @@
     }
 
     .chat-thread li:nth-child(even):before {
-        left: -70px;
+        left: -63px;
         background-image: url(data:image/jpeg;base64,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);
         top: -10px;
     }
 
     .chat-thread li:nth-child(even):after {
-        border-left: 15px solid transparent;
-        left: -15px;
+        border-left: 10px solid transparent;
+        left: -9px;
+        border-top: 8px solid rgb(231, 233, 238);
     }
 
     .chat-window {
@@ -235,7 +241,6 @@
         text-align:center;
         margin-top:35px;
         color: rgba(255, 255, 255, 0.35);
-        font-family: 'Noto Sans', sans-serif;
     }
     .credits a{
         text-decoration:none;
@@ -272,50 +277,51 @@
         </ul>
     </section>
     <script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
+    <script type="text/javascript" src="js/vrv-jssdk-v1.3.js"></script>
     <script type="text/javascript" src="js/owo.js"></script>
     <script>
+        vrv.init({debug:false});
         //------------------------------DOM加载完毕事件------------------------------
         $(function () {
             //追加条目
             $(".item").append('<span class="i title">'+owo.parameter.GetQueryString("title")+'</span>');
-            $(".item").append('<span class="i time fa fa-clock-o ">'+owo.time.getDateDiff(owo.parameter.GetQueryString("time"))+'</span>');
+            $(".item").append('<span class="i time fa fa-clock-o ">'+owo.parameter.GetQueryString("time")+'</span>');
             $(".item").append('<span class="i name">'+owo.parameter.GetQueryString("name")+'</span> <span class="i assign">指派人:</span>');
             $(".item").append('<img class="i user_img" src="'+owo.parameter.GetQueryString("img")+'">');
             //顶置按钮点击事件
             $("#overhead").click(function(){
-                //overheadTask(ID)
-                alert("置顶成功！");
+                vrv.jssdk.overheadTask({
+                    taskID:parseInt(owo.parameter.GetQueryString("msgID")),
+                    isTop:true,
+                    success: function (res) {
+                        alert(res.result);
+                    }
+                });
             });
             //关闭按钮点击事件
             $("#cancel").click(function(){
-                //cancelTask(ID)
-                alert("关闭成功！");
+                alert("关闭："+owo.parameter.GetQueryString("msgID"));
+                vrv.jssdk.cancelTask({
+                    taskID:parseInt(owo.parameter.GetQueryString("msgID")),
+                    success: function (res) {
+                        alert(res.result);
+                    }
+                });
+
             });
             //返回按钮点击事件
             $(".fa-angle-left").click(function(){
                 window.location.href="index.html";
             });
+            vrv.jssdk.readTaskMsg({
+                taskID:parseInt(owo.parameter.GetQueryString("msgID")),
+                success: function (res) {
+                    alert(res.result);
+                }
+            });
         });
         //----------------------------------VRVSDK----------------------------------
         vrv.ready(function(){});
-        //根据任务ID顶置任务
-        function overheadTask(taskID) {
-            vrv.jssdk.getReceiveTask({
-                taskID:taskID,
-                success: function (res) {
-                    return res;
-                }
-            })
-        }
-        //根据任务ID取消任务
-        function cancelTask(taskID) {
-            vrv.jssdk.getReceiveTask({
-                taskID:taskID,
-                success: function (res) {
-                    return res;
-                }
-            })
-        }
     </script>
 </body>
 </html>
