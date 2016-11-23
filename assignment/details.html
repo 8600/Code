@@ -103,7 +103,7 @@
     }
     .box .item .user_img{
         top: 11%;
-        right: 10px;
+        right: 5px;
         width: 55px;
         height: 55px;
         border-radius: 15px;
@@ -150,7 +150,7 @@
     </header>
     <section class="box">
         <ul class="card">
-            <li class="item"></li>
+
         </ul>
         <div class="button">
             <span class="fa fa-comment-o">回复</span>
@@ -165,32 +165,30 @@
         vrv.init({debug:false});
         //------------------------------DOM加载完毕事件------------------------------
         $(function () {
+            //引用owo方法
+            const GetQueryString=owo.parameter.GetQueryString;
             //追加条目
-            $(".item").append('<span class="i title">'+owo.parameter.GetQueryString("title")+'</span>');
-            $(".item").append('<span class="i time fa fa-clock-o ">'+owo.parameter.GetQueryString("time")+'</span>');
-            $(".item").append('<span class="i name">'+owo.parameter.GetQueryString("name")+'</span> <span class="i assign">指派人:</span>');
-            $(".item").append('<img class="i user_img" src="'+owo.parameter.GetQueryString("img")+'">');
-            if(owo.parameter.GetQueryString("isTOP")=="1"){
-                //$(".fa-thumb-tack").addClass("is_active");
+            $(".item").append('<span class="i title">'+GetQueryString("title")+'</span><span class="i time fa fa-clock-o">'+GetQueryString("time")+'</span><span class="i name">'+GetQueryString("name")+'</span> <span class="i assign">指派人:</span><img class="i user_img" src="'+GetQueryString("img")+'">');
+            if(GetQueryString("isTOP")=="1"){
                 $(".fa-thumb-tack").text("取消顶置");
             }
             //顶置按钮点击事件
             $("#overhead").click(function(){
-                var isTop = true;
-                if($(".fa-thumb-tack").html()=="顶置") {
-                    isTop =false;
-                }
+                const isTop = $(".fa-thumb-tack").html()=="顶置"? true:false;
                 vrv.jssdk.overheadTask({
-                    taskID:parseInt(owo.parameter.GetQueryString("msgID")),
+                    taskID:parseInt(GetQueryString("msgID")),
                     isTop:isTop,
                     success: function (res) {
                         if(res.result=="ok"){
-                            //$(".fa-thumb-tack").addClass("is_active");
-                            $(".fa-thumb-tack").text("顶置");
+                            if(isTop){
+                                $(".fa-thumb-tack").text("取消顶置");
+                            }
+                            else {
+                                $(".fa-thumb-tack").text("顶置");
+                            }
                         }
                         else {
-                            //$(".fa-thumb-tack").removeClass("is_active");
-                            $(".fa-thumb-tack").text("取消顶置");
+                           alert("出现未知错误！");
                         }
                     }
                 });
@@ -213,8 +211,7 @@
             //当用户浏览页面后把任务标记为已读
             vrv.jssdk.readTaskMsg({
                 taskID:parseInt(owo.parameter.GetQueryString("msgID")),
-                success: function (res) {
-                }
+                success: function (res) {}
             });
             if(owo.parameter.GetQueryString("isTOP")=="1"){
                 //$(".fa-thumb-tack").addClass("is_active");

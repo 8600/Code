@@ -138,11 +138,15 @@
         max-width: 60px;
         max-height: 60px;
     }
-    .box .item .fa-sort-asc{
-        font-size: 70%;
-        font-weight: bold;
-        color: red;
-        margin-left: 5px;
+    .box .item .fa-thumb-tack{
+        font-size: 100%;
+        color: rgba(124, 94, 153, 0.65);
+        margin-left: 9px;
+    }
+    .box .item .fa-mixcloud{
+        font-size: 100%;
+        color: rgba(124, 94, 153, 0.65);
+        margin-left: 9px;
     }
     .box .item .new{
         background-color: red;
@@ -167,7 +171,7 @@
 </style>
 <body>
     <header>
-        <nav class="fa fa-angle-left" onclick="closeView();" ></nav>
+        <nav class="fa fa-angle-left" onclick="vrv.jssdk.closeView({})" ></nav>
         <div class="switch">
             <div id="shoudao" class="switch_member btn btn-lg ripple switch_1 is_active">收到任务</div>
             <div id="zhipai" class="switch_member btn btn-lg ripple switch_2">指派任务</div>
@@ -176,20 +180,6 @@
     </header>
     <section class="box">
         <ul class="card">
-            <li class="item" ID='11' onclick="itemClick(this)">
-                <span class="i title">121212<span class="fa fa-sort-asc">TOP</span></span>
-                <span class="i time fa fa-clock-o ">2016</span>
-                <span class="i name">232323</span>
-                <span class="i assign">指派人:</span>
-                <img class="i user_img" src="">
-            </li>
-            <li class="item" ID='111' onclick="itemClick(this)">
-                <span class="i title">121212</span>
-                <span class="i time fa fa-clock-o ">2016</span>
-                <span class="i name">232323</span>
-                <span class="i assign">指派人:</span>
-                <img class="i user_img" src="">
-            </li>
         </ul>
     </section>
     <footer></footer>
@@ -197,66 +187,48 @@
     <script type="text/javascript" src="js/vrv-jssdk-v1.3.js"></script>
     <script type="text/javascript" src="js/owo.js"></script>
     <script>
-        //**************************************测试用的数据**************************************
         //列表数据
-        vrv.init({debug:false});
-        var topList="";
-        var otherList="";
-
+        vrv.init();
+        let topList="",otherList="";
         function chackEnd(isEnd) {
-            $(".card").empty();
             if(isEnd){
                 $(".card").append(topList);
                 $(".card").append(otherList);
             }
         }
 
-        function getUserProfile(isEnd,msgID,title,time,userName,sendUserId,isTop) {
-            if(sendUserId!="0"){
-                vrv.jssdk.getUserProfile({
-                    userID:sendUserId,
-                    success: function (res) {
-                        var userImg =owo.text.cutString(res,"avatar=\'","\'}");
-                        if(isTop=="1"){
-                            topList+='<li class="item" ID='+msgID+' onclick="itemClick(this)"> <span class="i title">'+title+'<span class="fa fa-sort-asc">TOP</span></span> <span class="i time fa fa-clock-o ">'+owo.time.getLocalTime2(time)+'</span> <span class="i name">'+userName+'</span> <span class="i assign">指派人:</span> <img class="i user_img" src="'+userImg+'"> </li>'
-                            chackEnd(isEnd);
-                        }
-                        else {
-                            otherList+='<li class="item" ID='+msgID+' onclick="itemClick(this)"> <span class="i title">'+title+'</span> <span class="i time fa fa-clock-o ">'+owo.time.getLocalTime2(time)+'</span> <span class="i name">'+userName+'</span> <span class="i assign">指派人:</span> <img class="i user_img" src="'+userImg+'"> </li>';
-                            chackEnd(isEnd);
-                        }
+        function getUserProfile(isEnd,msgID,title,time,sendUserId,isTop,isRead) {
+            vrv.jssdk.getUserProfile({
+                userID:sendUserId,
+                success: function (res) {
+                    //临时加在一个图片 等图片sdk修复
+                    const userImg ="img/img.png";
+                    const userName = (sendUserId!="0")?owo.text.cutString(res,"remark=\'","\',"):"我";
+                    const onTop=(isTop=="1")?'<span class="fa fa-thumb-tack"></span>':"";
+                    const onRead=(isRead=="1")?'':'<span class="fa fa-mixcloud"></span>';
+                    if(isTop=="1"||isRead!="1"){
+                        topList+='<li class="item" ID='+msgID+' onclick="itemClick(this)"> <span class="i title">'+title+onTop+onRead+'</span> <span class="i time fa fa-clock-o ">'+owo.time.getLocalTime2(time)+'</span> <span class="i name">'+userName+'</span> <span class="i assign">指派人:</span> <img class="i user_img" src="'+userImg+'"> </li>'
+                        chackEnd(isEnd);
                     }
-                });
-            }
-            else {
-                var userImg ="";
-                if(isTop=="1"){
-                    topList+='<li class="item" ID='+msgID+' onclick="itemClick(this)"> <span class="i title">'+title+'<span class="fa fa-sort-asc">TOP</span></span> <span class="i time fa fa-clock-o ">'+owo.time.getLocalTime2(time)+'</span> <span class="i name">'+userName+'</span> <span class="i assign">指派人:</span> <img class="i user_img" src="'+userImg+'"> </li>'
-                    chackEnd(isEnd);
+                    else {
+                        otherList+='<li class="item" ID='+msgID+' onclick="itemClick(this)"> <span class="i title">'+title+onTop+onRead+'</span> <span class="i time fa fa-clock-o ">'+owo.time.getLocalTime2(time)+'</span> <span class="i name">'+userName+'</span> <span class="i assign">指派人:</span> <img class="i user_img" src="'+userImg+'"> </li>';
+                        chackEnd(isEnd);
+                    }
                 }
-                else {
-                    otherList+='<li class="item" ID='+msgID+' onclick="itemClick(this)"> <span class="i title">'+title+'</span> <span class="i time fa fa-clock-o ">'+owo.time.getLocalTime2(time)+'</span> <span class="i name">'+userName+'</span> <span class="i assign">指派人:</span> <img class="i user_img" src="'+userImg+'"> </li>';
-                    chackEnd(isEnd);
-                }
-            }
+            });
         }
 
         //-------------------------------切换列表事件-------------------------------
         function tabClick(res) {
-            var title =owo.text.cutStringArray(res,'body\":\"','\"}');
-            var time = owo.text.cutStringArray(res,"sendTime=",",");
-            var sendUserId = owo.text.cutStringArray(res,"fromID=",",");
-            var msgID = owo.text.cutStringArray(res,"msgID=",",");
-            var isTop = owo.text.cutStringArray(res,"top=","}");
-            for(var index=0;index<title.length;index++){
-                var userName = "测试";
-                var isEnd =false;
-                if(index>=title.length-1){isEnd=true;}
-                topList="";otherList="";
-                getUserProfile(isEnd,msgID[index],title[index],time[index],userName,sendUserId[index],isTop[index]);
+            //清空列表中的条目
+            $(".card").empty();topList="";otherList="";
+            const title =owo.text.cutStringArray(res,'body\":\"','\"}'),time = owo.text.cutStringArray(res,"sendTime=",","),sendUserId = owo.text.cutStringArray(res,"fromID=",","),msgID = owo.text.cutStringArray(res,"msgID=",","),isTop = owo.text.cutStringArray(res,"top=","}"),isRead = owo.text.cutStringArray(res,"isRead=","}");
+            for(let index=0;index<title.length;index++){
+                const isEnd =(index>=title.length-1)?true:false;
+                getUserProfile(isEnd,msgID[index],title[index],time[index],sendUserId[index],isTop[index],isRead[index]);
             }
         }
-
+        //获取收到的任务
         function getReceiveTask() {
             vrv.jssdk.getReceiveTask({
                 success: function (res) {
@@ -268,42 +240,22 @@
         $(function () {
             //任务切换
             $(".switch_member").click(function(){
-                var click =this;
                 $(".switch_member").removeClass("is_active");
-                $(click).addClass("is_active");
+                $(this).addClass("is_active");
                 switch (this.id){
                     case "shoudao":getReceiveTask();break;
                     case "zhipai":vrv.jssdk.getAppointedTask({success: function (res) {tabClick(res);}});break;
                 }
             });
-            //首页面加载 收到任务 列表
+            //-DOM加载完毕开始加载收到的任务
             getReceiveTask();
-
         });
-        //------------------------------项目列表点击事件------------------------------
+        //------------------------------任务列表点击事件------------------------------
         function itemClick(dom) {
-            var childrenDom =$(dom).children();
-            var isTOP ="0";
-            //alert(childrenDom[0].children().innerText);
-            if($(childrenDom[0]).children().length>0){
-                console.log($(childrenDom[0]).children()[0].innerText);
-                isTOP="1";
-            }
-
-            window.location.href="details.html?"+"title="+childrenDom[0].innerText+"&time="+childrenDom[1].innerText+"&name="+childrenDom[2].innerText+"&msgID="+dom.getAttribute("ID")+"&img="+childrenDom[4].innerText+"&isTOP="+isTOP;
+            const childrenDom =$(dom).children();
+            const isTOP =($(childrenDom[0]).children().length>0) ? "1" :"0";
+            window.location.href="details.html?"+"title="+childrenDom[0].innerText+"&time="+childrenDom[1].innerText+"&name="+childrenDom[2].innerText+"&msgID="+dom.getAttribute("ID")+"&img="+childrenDom[4].src+"&isTOP="+isTOP;
         }
-        //----------------------------------VRVSDK----------------------------------
-        function closeView() {
-		    vrv.jssdk.closeView({})
-	    }
-        function getCompletedTask() {
-            vrv.jssdk.getCompletedTask({
-                success: function (res) {
-                    document.write(res);
-                }
-            })
-        }
-        //----------------------------------VRVSDK----------------------------------
     </script>
 </body>
 </html>
