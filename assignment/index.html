@@ -162,12 +162,12 @@
         position: relative;
         border: 1px solid black;
         margin: 10px;
-        background-image: url("/storage/0663-C18A/LinkdoodSDK/public/head/head_uoTP_8038000015442a01.jpg");
+        background-image: url("http://cdn.sspai.com/attachment/thumbnail/2016/11/16/c4751878eda16455dc60a6d6faabaf9756a2d_w_160_h_160_c_1.jpg");
     }
 </style>
 <body>
     <header>
-        <nav class="fa fa-angle-left" onclick="closeView();"></nav>
+        <nav class="fa fa-angle-left" onclick="closeView();" ></nav>
         <div class="switch">
             <div id="shoudao" class="switch_member btn btn-lg ripple switch_1 is_active">收到任务</div>
             <div id="zhipai" class="switch_member btn btn-lg ripple switch_2">指派任务</div>
@@ -176,9 +176,22 @@
     </header>
     <section class="box">
         <ul class="card">
+            <li class="item" ID='11' onclick="itemClick(this)">
+                <span class="i title">121212<span class="fa fa-sort-asc">TOP</span></span>
+                <span class="i time fa fa-clock-o ">2016</span>
+                <span class="i name">232323</span>
+                <span class="i assign">指派人:</span>
+                <img class="i user_img" src="">
+            </li>
+            <li class="item" ID='111' onclick="itemClick(this)">
+                <span class="i title">121212</span>
+                <span class="i time fa fa-clock-o ">2016</span>
+                <span class="i name">232323</span>
+                <span class="i assign">指派人:</span>
+                <img class="i user_img" src="">
+            </li>
         </ul>
     </section>
-    <div class="lalalal" onclick="getAppointedTask()">getAppointedTask</div>
     <footer></footer>
     <script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
     <script type="text/javascript" src="js/vrv-jssdk-v1.3.js"></script>
@@ -190,30 +203,42 @@
         var topList="";
         var otherList="";
 
+        function chackEnd(isEnd) {
+            $(".card").empty();
+            if(isEnd){
+                $(".card").append(topList);
+                $(".card").append(otherList);
+            }
+        }
+
         function getUserProfile(isEnd,msgID,title,time,userName,sendUserId,isTop) {
-            vrv.jssdk.getUserProfile({
-                userID:sendUserId,
-                success: function (res) {
-                    console.log(res);
-                    var userImg =owo.text.cutString(res,"avatar=\'","\'}");
-                    var userImg ="/storage/0663-C18A/LinkdoodSDK/public/head/head_uoTP_8038000015442a01.jpg";
-                    //var userImg ="/storage/0663-C18A/abc.png";
-                    if(isTop=="1"){
-                        topList+='<li class="item" ID='+msgID+' onclick="itemClick(this)"> <span class="i title">'+title+'<span class="fa fa-sort-asc">TOP</span></span> <span class="i time fa fa-clock-o ">'+owo.time.getLocalTime2(time)+'</span> <span class="i name">'+userName+'</span> <span class="i assign">指派人:</span> <img class="i user_img" src="'+userImg+'"> </li>'
-                        if(isEnd){
-                            $(".card").append(topList);
-                            $(".card").append(otherList);
+            if(sendUserId!="0"){
+                vrv.jssdk.getUserProfile({
+                    userID:sendUserId,
+                    success: function (res) {
+                        var userImg =owo.text.cutString(res,"avatar=\'","\'}");
+                        if(isTop=="1"){
+                            topList+='<li class="item" ID='+msgID+' onclick="itemClick(this)"> <span class="i title">'+title+'<span class="fa fa-sort-asc">TOP</span></span> <span class="i time fa fa-clock-o ">'+owo.time.getLocalTime2(time)+'</span> <span class="i name">'+userName+'</span> <span class="i assign">指派人:</span> <img class="i user_img" src="'+userImg+'"> </li>'
+                            chackEnd(isEnd);
+                        }
+                        else {
+                            otherList+='<li class="item" ID='+msgID+' onclick="itemClick(this)"> <span class="i title">'+title+'</span> <span class="i time fa fa-clock-o ">'+owo.time.getLocalTime2(time)+'</span> <span class="i name">'+userName+'</span> <span class="i assign">指派人:</span> <img class="i user_img" src="'+userImg+'"> </li>';
+                            chackEnd(isEnd);
                         }
                     }
-                    else {
-                        otherList+='<li class="item" ID='+msgID+' onclick="itemClick(this)"> <span class="i title">'+title+'</span> <span class="i time fa fa-clock-o ">'+owo.time.getLocalTime2(time)+'</span> <span class="i name">'+userName+'</span> <span class="i assign">指派人:</span> <img class="i user_img" src="'+userImg+'"> </li>';
-                        if(isEnd){
-                            $(".card").append(topList);
-                            $(".card").append(otherList);document.wr
-                        }
-                    }
+                });
+            }
+            else {
+                var userImg ="";
+                if(isTop=="1"){
+                    topList+='<li class="item" ID='+msgID+' onclick="itemClick(this)"> <span class="i title">'+title+'<span class="fa fa-sort-asc">TOP</span></span> <span class="i time fa fa-clock-o ">'+owo.time.getLocalTime2(time)+'</span> <span class="i name">'+userName+'</span> <span class="i assign">指派人:</span> <img class="i user_img" src="'+userImg+'"> </li>'
+                    chackEnd(isEnd);
                 }
-            });
+                else {
+                    otherList+='<li class="item" ID='+msgID+' onclick="itemClick(this)"> <span class="i title">'+title+'</span> <span class="i time fa fa-clock-o ">'+owo.time.getLocalTime2(time)+'</span> <span class="i name">'+userName+'</span> <span class="i assign">指派人:</span> <img class="i user_img" src="'+userImg+'"> </li>';
+                    chackEnd(isEnd);
+                }
+            }
         }
 
         //-------------------------------切换列表事件-------------------------------
@@ -227,8 +252,17 @@
                 var userName = "测试";
                 var isEnd =false;
                 if(index>=title.length-1){isEnd=true;}
+                topList="";otherList="";
                 getUserProfile(isEnd,msgID[index],title[index],time[index],userName,sendUserId[index],isTop[index]);
             }
+        }
+
+        function getReceiveTask() {
+            vrv.jssdk.getReceiveTask({
+                success: function (res) {
+                    tabClick(res);
+                }
+            });
         }
         //------------------------------DOM加载完毕事件------------------------------
         $(function () {
@@ -238,43 +272,30 @@
                 $(".switch_member").removeClass("is_active");
                 $(click).addClass("is_active");
                 switch (this.id){
-                    case "shoudao":vrv.jssdk.getReceiveTask({success: function (res) {tabClick(res);}});break;
+                    case "shoudao":getReceiveTask();break;
                     case "zhipai":vrv.jssdk.getAppointedTask({success: function (res) {tabClick(res);}});break;
                 }
-                alert(this.id);
-                //tabClick(this.id);
             });
             //首页面加载 收到任务 列表
-            vrv.jssdk.getReceiveTask({
-                success: function (res) {
-                    tabClick(res);
-                }
-            });
+            getReceiveTask();
+
         });
         //------------------------------项目列表点击事件------------------------------
         function itemClick(dom) {
             var childrenDom =$(dom).children();
-            window.location.href="details.html?"+"title="+childrenDom[0].innerText+"&time="+childrenDom[1].innerText+"&name="+childrenDom[2].innerText+"&msgID="+dom.getAttribute("ID")+"&img="+childrenDom[4].innerText;
+            var isTOP ="0";
+            //alert(childrenDom[0].children().innerText);
+            if($(childrenDom[0]).children().length>0){
+                console.log($(childrenDom[0]).children()[0].innerText);
+                isTOP="1";
+            }
+
+            window.location.href="details.html?"+"title="+childrenDom[0].innerText+"&time="+childrenDom[1].innerText+"&name="+childrenDom[2].innerText+"&msgID="+dom.getAttribute("ID")+"&img="+childrenDom[4].innerText+"&isTOP="+isTOP;
         }
         //----------------------------------VRVSDK----------------------------------
         function closeView() {
 		    vrv.jssdk.closeView({})
 	    }
-        function getReceiveTask() {
-            vrv.jssdk.getReceiveTask({
-                success: function (res) {
-                    document.write(res);
-                }
-            })
-        }
-        function getAppointedTask() {
-            vrv.jssdk.getAppointedTask({
-                success: function (res) {
-                    alert("getAppointedTask");
-                    document.write(res);
-                }
-            })
-        }
         function getCompletedTask() {
             vrv.jssdk.getCompletedTask({
                 success: function (res) {
