@@ -294,7 +294,9 @@
                     taskID:parseInt(owo.parameter.GetQueryString("msgID")),
                     isTop:true,
                     success: function (res) {
-                        alert(res.result);
+                        if(res.result=="ok"){
+                            alert("顶置成功！")
+                        }
                     }
                 });
             });
@@ -313,15 +315,14 @@
             $(".fa-angle-left").click(function(){
                 window.location.href="index.html";
             });
+            //当用户浏览页面后把任务标记为已读
             vrv.jssdk.readTaskMsg({
                 taskID:parseInt(owo.parameter.GetQueryString("msgID")),
                 success: function (res) {
-                    alert(res.result);
                 }
             });
         });
         //----------------------------------VRVSDK----------------------------------
-        vrv.ready(function(){});
     </script>
 </body>
 </html>

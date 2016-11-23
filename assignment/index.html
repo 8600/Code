@@ -121,7 +121,7 @@
         color: #aaaaaa;
         width: 70px;
         text-align: center;
-        right: 0px;
+        right: 0;
     }
     .box .item .assign{
         font-size: 77%;
@@ -157,12 +157,12 @@
     .lalalal{
         width: 140px;
         height: 40px;
-        background-color: blue;
         float: left;
         z-index: 9999;
         position: relative;
         border: 1px solid black;
         margin: 10px;
+        background-image: url("/storage/0663-C18A/LinkdoodSDK/public/head/head_uoTP_8038000015442a01.jpg");
     }
 </style>
 <body>
@@ -176,19 +176,9 @@
     </header>
     <section class="box">
         <ul class="card">
-            <li class="item" ID='11' onclick="itemClick(this)">
-                <span class="i title">121212</span>
-                <span class="i time fa fa-clock-o ">2016</span>
-                <span class="i name">232323</span>
-                <span class="i assign">指派人:</span>
-                <img class="i user_img" src="">
-            </li>
         </ul>
     </section>
-    <div class="lalalal" onclick="getReceiveTask();">getReceiveTask</div>
-    <div class="lalalal" onclick="getAppointedTask();">getAppointedTask</div>
-    <div class="lalalal" onclick="getCompletedTask();">getCompletedTask</div>
-    <div class="lalalal" onclick="getUserProfile();">getUserProfile</div>
+    <div class="lalalal" onclick="getAppointedTask()">getAppointedTask</div>
     <footer></footer>
     <script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
     <script type="text/javascript" src="js/vrv-jssdk-v1.3.js"></script>
@@ -206,13 +196,11 @@
                 success: function (res) {
                     console.log(res);
                     var userImg =owo.text.cutString(res,"avatar=\'","\'}");
-                    var userImg ="http://static.oschina.net/uploads/user/87/175925_50.jpg?t=1370654336000";
-                    alert(userImg);
+                    var userImg ="/storage/0663-C18A/LinkdoodSDK/public/head/head_uoTP_8038000015442a01.jpg";
+                    //var userImg ="/storage/0663-C18A/abc.png";
                     if(isTop=="1"){
                         topList+='<li class="item" ID='+msgID+' onclick="itemClick(this)"> <span class="i title">'+title+'<span class="fa fa-sort-asc">TOP</span></span> <span class="i time fa fa-clock-o ">'+owo.time.getLocalTime2(time)+'</span> <span class="i name">'+userName+'</span> <span class="i assign">指派人:</span> <img class="i user_img" src="'+userImg+'"> </li>'
                         if(isEnd){
-                            alert("top:"+topList);
-                            alert("other:"+otherList);
                             $(".card").append(topList);
                             $(".card").append(otherList);
                         }
@@ -221,7 +209,7 @@
                         otherList+='<li class="item" ID='+msgID+' onclick="itemClick(this)"> <span class="i title">'+title+'</span> <span class="i time fa fa-clock-o ">'+owo.time.getLocalTime2(time)+'</span> <span class="i name">'+userName+'</span> <span class="i assign">指派人:</span> <img class="i user_img" src="'+userImg+'"> </li>';
                         if(isEnd){
                             $(".card").append(topList);
-                            $(".card").append(otherList);
+                            $(".card").append(otherList);document.wr
                         }
                     }
                 }
@@ -229,7 +217,7 @@
         }
 
         //-------------------------------切换列表事件-------------------------------
-        function tabClick(name,res) {
+        function tabClick(res) {
             var title =owo.text.cutStringArray(res,'body\":\"','\"}');
             var time = owo.text.cutStringArray(res,"sendTime=",",");
             var sendUserId = owo.text.cutStringArray(res,"fromID=",",");
@@ -249,12 +237,17 @@
                 var click =this;
                 $(".switch_member").removeClass("is_active");
                 $(click).addClass("is_active");
-                tabClick(this.id);
+                switch (this.id){
+                    case "shoudao":vrv.jssdk.getReceiveTask({success: function (res) {tabClick(res);}});break;
+                    case "zhipai":vrv.jssdk.getAppointedTask({success: function (res) {tabClick(res);}});break;
+                }
+                alert(this.id);
+                //tabClick(this.id);
             });
             //首页面加载 收到任务 列表
             vrv.jssdk.getReceiveTask({
                 success: function (res) {
-                    tabClick("shoudao",res);
+                    tabClick(res);
                 }
             });
         });
@@ -277,6 +270,7 @@
         function getAppointedTask() {
             vrv.jssdk.getAppointedTask({
                 success: function (res) {
+                    alert("getAppointedTask");
                     document.write(res);
                 }
             })
