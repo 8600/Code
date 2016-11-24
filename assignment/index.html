@@ -133,14 +133,24 @@
         height: 55px;
         border-radius: 6px;
     }
-    .box .item .fa-thumb-tack{
-        font-size: 100%;
-        color: rgba(124, 94, 153, 0.65);
-        margin-left: 9px;
+    .box .item .btn2{
+        position: absolute;
+        top: 0;
+        right: -60px;
+        text-align: center;
+        background-color: #d5f1db;
+        color: #464124;
+        width: 60px;
+        height: 100%;
+        font-size: 1.4em;
         line-height: 80px;
         border-bottom: 1px solid #ece9e9;
     }
-    .box .item .fa-thumb-tack::before{
+    .box .item .title .fa-thumb-tack{
+        color: #93a3d8;
+        padding-left: 5px;
+    }
+    .box .item .btn2::before{
         font-size: 200%;
         color: #464124;
     }
@@ -175,11 +185,11 @@
         top: 0;
         right: -120px;
         text-align: center;
-        background-color: #e0b298;
+        background-color: #cabdb6;
         color: #464124;
         width: 60px;
         height: 100%;
-        font-size: 200%;
+        font-size: 1.4em;
         line-height: 80px;
         border-bottom: 1px solid #ece9e9;
     }
@@ -212,7 +222,7 @@
 </style>
 <body>
     <header>
-        <nav class="fa fa-angle-left" onclick="vrv.jssdk.closeView({})" ></nav>
+        <nav id="close" class="fa fa-angle-left"></nav>
         <div class="switch">
             <div id="shoudao" class="switch_member btn btn-lg ripple switch_1 is_active">收到任务</div>
             <div id="zhipai" class="switch_member btn btn-lg ripple switch_2">指派任务</div>
@@ -221,17 +231,17 @@
     </header>
     <section class="box">
         <ul class="card">
-            <li class="item" ismove="flase">
-                <div id="con" class="con">
-                    <span class="i title">晚上聚餐<span class="new">NEW</span></span>
+            <li class="item" ismove="false">
+                <div id="con" msgID="12122" class="con">
+                    <span class="i title">晚上聚餐<span class="fa fa-thumb-tack"></span></span>
                     <span class="i time fa fa-clock-o "> 2016.11.06 16:05:26</span>
                     <span class="i name">杨伦</span>
                     <span class="i assign">指派人:</span>
                     <img class="i user_img" src="img/eg_tulip.png"/>
                     <div class="clear"></div>
                 </div>
-                <div id="trash" class="btn1 fa fa-trash"></div>
-                <div id="top" class="btn2 fa fa-thumb-tack"></div>
+                <div id="trash" class="btn1">结束</div>
+                <div id="top" class="btn2">置顶</div>
             </li>
         </ul>
     </section>
@@ -260,18 +270,18 @@
                     const onTop=(isTop=="1")?'<span class="fa fa-thumb-tack"></span>':"";
                     const onRead=(isRead=="1")?'':'<span class="fa fa-mixcloud"></span>';
                     if(isTop=="1"||isRead!="1"){
-                        topList+='<li class="item" ismove="flase" ID='+msgID+' onclick="itemClick(this)"><div id="con" class="con"><span class="i title">'+title+
+                        topList+='<li class="item" ismove="false" onclick="itemClick(this)"><div id="con" msgID="'+msgID+'" class="con"><span class="i title">'+title+
                                 onTop+onRead+'</span> <span class="i time fa fa-clock-o ">'+
                                 owo.time.getLocalTime2(time)+'</span> <span class="i name">'+
                                 userName+'</span> <span class="i assign">指派人:</span> <img class="i user_img" src="'+
-                                userImg+'"><div class="clear"></div></div><div id="trash" class="btn1 fa fa-trash"></div><div id="top" class="btn2 fa fa-thumb-tack"></div></li>';
+                                userImg+'"><div class="clear"></div></div><div id="trash" class="btn1">结束</div><div id="top" class="btn2">置顶</div></li>';
                         chackEnd(isEnd);
                     }
                     else {
-                        otherList+='<li class="item" ismove="flase" ID='+msgID+' onclick="itemClick(this)"><div id="con" class="con"><span class="i title">'+title+
+                        otherList+='<li class="item" ismove="false" ID='+msgID+' onclick="itemClick(this)"><div id="con" msgID="'+msgID+'" class="con"><span class="i title">'+title+
                                 onTop+onRead+'</span> <span class="i time fa fa-clock-o ">'+owo.time.getLocalTime2(time)+'</span> <span class="i name">'+
                                 userName+'</span> <span class="i assign">指派人:</span> <img class="i user_img" src="'+
-                                userImg+'"><div class="clear"></div></div><div id="trash" class="btn1 fa fa-trash"></div><div id="top" class="btn2 fa fa-thumb-tack"></div></li>';
+                                userImg+'"><div class="clear"></div></div><div id="trash" class="btn1">结束</div><div id="top" class="btn2">置顶</div></li>';
                         chackEnd(isEnd);
                     }
                 }
@@ -300,7 +310,6 @@
         function listTouch(initX,moveX,X,objX,obj) {
             initX = event.targetTouches[0].pageX;
             objX = (obj.style.WebkitTransform.replace(/translateX\(/g, "").replace(/px\)/g, "")) * 1;
-
             if (objX == 0) {
                 window.addEventListener('touchmove', function(event) {
                     event.preventDefault();
@@ -348,16 +357,31 @@
             const childrenDom =$(dom).children();
             //console.log(childrenDom[0]);
             const isTOP =($(childrenDom[0]).children().length>0) ? "1" :"0";
-            window.location.href="details.html?"+"title="+childrenDom[0].innerText+"&time="+childrenDom[1].innerText+"&name="+childrenDom[2].innerText+"&msgID="+dom.getAttribute("ID")+"&img="+childrenDom[4].src+"&isTOP="+isTOP;
+            console.log(dom.getAttribute("ID"));
+            window.location.href="details.html?"+"title="+childrenDom[0].innerText+"&time="+childrenDom[1].innerText+"&name="+childrenDom[2].innerText+"&msgID="+dom.getAttribute("msgID")+"&img="+childrenDom[4].src+"&isTOP="+isTOP;
         }
         //------------------------------清理已经激活的选项卡------------------------------
         function clear(dom) {
             $(".switch_member").removeClass("is_active");
             $(this).addClass("is_active");
         }
+        //------------------------------置顶事件------------------------------
+        function clickTopList(dom) {
+            const testID =$(dom).children()[0].getAttribute("msgID");
+            vrv.jssdk.updateTask({
+                msgID:parseInt(testID),
+                isFinish:false,
+                isRead:false,
+                isTop:true,
+                isTask:true,
+                success: function (res) {
+                    alert("sd");
+                }
+            });
+        }
         //------------------------------DOM加载完毕事件------------------------------
         $(function () {
-            getReceiveTask();
+            //getReceiveTask();
             let initX; //触摸位置
             let moveX; //滑动时的位置
             let X = 0; //移动距离
@@ -365,12 +389,13 @@
             window.addEventListener('touchstart', function(event) {
                 event.preventDefault();
                 const Obj = event.target;
-                //console.log(Obj.parentNode);
                 switch (Obj.id){
                     case "con":listTouch(initX,moveX,X,objX,Obj.parentNode);break;
                     case "zhipai":clear(Obj);vrv.jssdk.getAppointedTask({success: function (res) {tabClick(res);}});break;
                     case "shoudao":clear(Obj);getReceiveTask();break;
-                    case "top":;
+                    case "close":vrv.jssdk.closeView({});break;
+                    case "top":clickTopList(Obj.parentNode);break;
+
                 }
             });
             window.addEventListener('touchend', function(event) {
@@ -382,7 +407,7 @@
                         itemClick(event.target);
                     }
                     else {
-                        if (objX > -80) {
+                        if (objX > -60) {
                             $(obj).attr("isMove","false");
                             obj.style.WebkitTransform = "translateX(" + 0 + "px)";
                             objX = 0;

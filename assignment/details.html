@@ -65,12 +65,12 @@
     .box .item{
         border-bottom: 1px solid #d6d6d6;
         position: relative;
-        height: 92px;
+        height: 80px;
     }
     .box .item .title{
         font-size: 130%;
         color: #595959;
-        top: 24px;
+        top: 27%;
         left: 20px;
         font-weight: 400;
     }
@@ -83,22 +83,22 @@
     .box .item .time{
         font-size: 100%;
         left: 20px;
-        bottom: 14%;
+        bottom: 8%;
         color: #aaaaaa;
         font-family: arial;
     }
     .box .item .name{
-        font-size: 75%;
-        bottom: 7px;
-        right: -7px;
+        font-size: 77%;
+        bottom: 1px;
         color: #aaaaaa;
         width: 70px;
         text-align: center;
+        right: 0px;
     }
     .box .item .assign{
-        font-size: 75%;
-        bottom: 7px;
-        right: 43px;
+        font-size: 77%;
+        bottom: 1%;
+        right: 54px;
         color: #aaaaaa;
     }
     .box .item .user_img{
@@ -149,7 +149,7 @@
         <div class="title">任务详情</div>
     </header>
     <section class="box">
-        <ul class="card">
+        <ul class="item">
 
         </ul>
         <div class="button">
@@ -167,6 +167,7 @@
         $(function () {
             //引用owo方法
             const GetQueryString=owo.parameter.GetQueryString;
+
             //追加条目
             $(".item").append('<span class="i title">'+GetQueryString("title")+'</span><span class="i time fa fa-clock-o">'+GetQueryString("time")+'</span><span class="i name">'+GetQueryString("name")+'</span> <span class="i assign">指派人:</span><img class="i user_img" src="'+GetQueryString("img")+'">');
             if(GetQueryString("isTOP")=="1"){
