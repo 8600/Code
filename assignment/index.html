@@ -86,12 +86,9 @@
         float: left;
     }
     .box .item{
-        height: 14%;
+        height: 80px;
         border-bottom: 1px solid #ece9e9;
         position: relative;
-        max-height: 100px;
-        min-height: 80px;
-        min-width: 95px;
     }
     .box .item .title{
         font-size: 130%;
@@ -117,31 +114,35 @@
     }
     .box .item .name{
         font-size: 77%;
-        bottom: 3px;
+        bottom: 1px;
         color: #aaaaaa;
         width: 70px;
         text-align: center;
-        right: 0;
+        right: 0px;
     }
     .box .item .assign{
         font-size: 77%;
-        bottom: 3px;
+        bottom: 1%;
         right: 54px;
         color: #aaaaaa;
     }
     .box .item .user_img{
-        top: 11%;
-        right: 20px;
-        width: 14%;
-        height: 61%;
+        top: 7%;
+        right: 9px;
+        width: 55px;
+        height: 55px;
         border-radius: 6px;
-        max-width: 60px;
-        max-height: 60px;
     }
     .box .item .fa-thumb-tack{
         font-size: 100%;
         color: rgba(124, 94, 153, 0.65);
         margin-left: 9px;
+        line-height: 80px;
+        border-bottom: 1px solid #ece9e9;
+    }
+    .box .item .fa-thumb-tack::before{
+        font-size: 200%;
+        color: #464124;
     }
     .box .item .fa-mixcloud{
         font-size: 100%;
@@ -158,6 +159,39 @@
         position: relative;
         bottom: 3px;
     }
+    .btn2 {
+        position: absolute;
+        top: 0;
+        right: -60px;
+        text-align: center;
+        background-color: #b7d6cb;
+        color: #fff;
+        width: 60px;
+        height: 100%;
+        line-height: 80px;
+    }
+    .btn1 {
+        position: absolute;
+        top: 0;
+        right: -120px;
+        text-align: center;
+        background-color: #e0b298;
+        color: #464124;
+        width: 60px;
+        height: 100%;
+        font-size: 200%;
+        line-height: 80px;
+        border-bottom: 1px solid #ece9e9;
+    }
+    .card {
+        overflow: hidden
+    }
+
+    .item {
+        border-bottom: 1px solid #fcfcfc;
+        position: relative;
+        -webkit-transform: translateX(0px);
+    }
     .lalalal{
         width: 140px;
         height: 40px;
@@ -167,6 +201,13 @@
         border: 1px solid black;
         margin: 10px;
         background-image: url("http://cdn.sspai.com/attachment/thumbnail/2016/11/16/c4751878eda16455dc60a6d6faabaf9756a2d_w_160_h_160_c_1.jpg");
+    }
+    .clear{
+        clear:both;
+    }
+    .con{
+        width: 100%;
+        height: 100%;
     }
 </style>
 <body>
@@ -180,6 +221,18 @@
     </header>
     <section class="box">
         <ul class="card">
+            <li class="item" ismove="flase">
+                <div id="con" class="con">
+                    <span class="i title">晚上聚餐<span class="new">NEW</span></span>
+                    <span class="i time fa fa-clock-o "> 2016.11.06 16:05:26</span>
+                    <span class="i name">杨伦</span>
+                    <span class="i assign">指派人:</span>
+                    <img class="i user_img" src="img/eg_tulip.png"/>
+                    <div class="clear"></div>
+                </div>
+                <div id="trash" class="btn1 fa fa-trash"></div>
+                <div id="top" class="btn2 fa fa-thumb-tack"></div>
+            </li>
         </ul>
     </section>
     <footer></footer>
@@ -207,11 +260,18 @@
                     const onTop=(isTop=="1")?'<span class="fa fa-thumb-tack"></span>':"";
                     const onRead=(isRead=="1")?'':'<span class="fa fa-mixcloud"></span>';
                     if(isTop=="1"||isRead!="1"){
-                        topList+='<li class="item" ID='+msgID+' onclick="itemClick(this)"> <span class="i title">'+title+onTop+onRead+'</span> <span class="i time fa fa-clock-o ">'+owo.time.getLocalTime2(time)+'</span> <span class="i name">'+userName+'</span> <span class="i assign">指派人:</span> <img class="i user_img" src="'+userImg+'"> </li>'
+                        topList+='<li class="item" ismove="flase" ID='+msgID+' onclick="itemClick(this)"><div id="con" class="con"><span class="i title">'+title+
+                                onTop+onRead+'</span> <span class="i time fa fa-clock-o ">'+
+                                owo.time.getLocalTime2(time)+'</span> <span class="i name">'+
+                                userName+'</span> <span class="i assign">指派人:</span> <img class="i user_img" src="'+
+                                userImg+'"><div class="clear"></div></div><div id="trash" class="btn1 fa fa-trash"></div><div id="top" class="btn2 fa fa-thumb-tack"></div></li>';
                         chackEnd(isEnd);
                     }
                     else {
-                        otherList+='<li class="item" ID='+msgID+' onclick="itemClick(this)"> <span class="i title">'+title+onTop+onRead+'</span> <span class="i time fa fa-clock-o ">'+owo.time.getLocalTime2(time)+'</span> <span class="i name">'+userName+'</span> <span class="i assign">指派人:</span> <img class="i user_img" src="'+userImg+'"> </li>';
+                        otherList+='<li class="item" ismove="flase" ID='+msgID+' onclick="itemClick(this)"><div id="con" class="con"><span class="i title">'+title+
+                                onTop+onRead+'</span> <span class="i time fa fa-clock-o ">'+owo.time.getLocalTime2(time)+'</span> <span class="i name">'+
+                                userName+'</span> <span class="i assign">指派人:</span> <img class="i user_img" src="'+
+                                userImg+'"><div class="clear"></div></div><div id="trash" class="btn1 fa fa-trash"></div><div id="top" class="btn2 fa fa-thumb-tack"></div></li>';
                         chackEnd(isEnd);
                     }
                 }
@@ -236,26 +296,107 @@
                 }
             });
         }
-        //------------------------------DOM加载完毕事件------------------------------
-        $(function () {
-            //任务切换
-            $(".switch_member").click(function(){
-                $(".switch_member").removeClass("is_active");
-                $(this).addClass("is_active");
-                switch (this.id){
-                    case "shoudao":getReceiveTask();break;
-                    case "zhipai":vrv.jssdk.getAppointedTask({success: function (res) {tabClick(res);}});break;
-                }
-            });
-            //-DOM加载完毕开始加载收到的任务
-            getReceiveTask();
-        });
+        //列表被开始触摸发生的函数
+        function listTouch(initX,moveX,X,objX,obj) {
+            initX = event.targetTouches[0].pageX;
+            objX = (obj.style.WebkitTransform.replace(/translateX\(/g, "").replace(/px\)/g, "")) * 1;
+
+            if (objX == 0) {
+                window.addEventListener('touchmove', function(event) {
+                    event.preventDefault();
+                    var obj = event.target.parentNode;
+                    if (obj.className == "item") {
+                        moveX = event.targetTouches[0].pageX;
+                        X = moveX - initX;
+                        if (X >= 0) {
+                            obj.style.WebkitTransform = "translateX(" + 0 + "px)";
+                        } else if (X < 0) {
+                            var l = Math.abs(X);
+                            obj.style.WebkitTransform = "translateX(" + -l + "px)";
+                            if (l > 120) {
+                                l = 120;
+                                obj.style.WebkitTransform = "translateX(" + -l + "px)";
+                            }
+                        }
+                    }
+                });
+            }
+            else if (objX < 0) {
+                window.addEventListener('touchmove', function(event) {
+                    event.preventDefault();
+                    var obj = event.target.parentNode;
+                    if (obj.className == "item") {
+                        moveX = event.targetTouches[0].pageX;
+                        X = moveX - initX;
+                        if (X >= 0) {
+                            var r = -120 + Math.abs(X);
+                            obj.style.WebkitTransform = "translateX(" + r + "px)";
+                            if (r > 0) {
+                                r = 0;
+                                obj.style.WebkitTransform = "translateX(" + r + "px)";
+                            }
+
+                        } else { //向左滑动
+                            obj.style.WebkitTransform = "translateX(" + -120 + "px)";
+                        }
+                    }
+                });
+            }
+        }
         //------------------------------任务列表点击事件------------------------------
         function itemClick(dom) {
             const childrenDom =$(dom).children();
+            //console.log(childrenDom[0]);
             const isTOP =($(childrenDom[0]).children().length>0) ? "1" :"0";
             window.location.href="details.html?"+"title="+childrenDom[0].innerText+"&time="+childrenDom[1].innerText+"&name="+childrenDom[2].innerText+"&msgID="+dom.getAttribute("ID")+"&img="+childrenDom[4].src+"&isTOP="+isTOP;
         }
+        //------------------------------清理已经激活的选项卡------------------------------
+        function clear(dom) {
+            $(".switch_member").removeClass("is_active");
+            $(this).addClass("is_active");
+        }
+        //------------------------------DOM加载完毕事件------------------------------
+        $(function () {
+            getReceiveTask();
+            let initX; //触摸位置
+            let moveX; //滑动时的位置
+            let X = 0; //移动距离
+            let objX = 0; //目标对象位置
+            window.addEventListener('touchstart', function(event) {
+                event.preventDefault();
+                const Obj = event.target;
+                //console.log(Obj.parentNode);
+                switch (Obj.id){
+                    case "con":listTouch(initX,moveX,X,objX,Obj.parentNode);break;
+                    case "zhipai":clear(Obj);vrv.jssdk.getAppointedTask({success: function (res) {tabClick(res);}});break;
+                    case "shoudao":clear(Obj);getReceiveTask();break;
+                    case "top":;
+                }
+            });
+            window.addEventListener('touchend', function(event) {
+                event.preventDefault();
+                var obj = event.target.parentNode;
+                if (obj.className == "item") {
+                    objX = (obj.style.WebkitTransform.replace(/translateX\(/g, "").replace(/px\)/g, "")) * 1;
+                    if (objX==0&&$(obj).attr("isMove")=="false"){
+                        itemClick(event.target);
+                    }
+                    else {
+                        if (objX > -80) {
+                            $(obj).attr("isMove","false");
+                            obj.style.WebkitTransform = "translateX(" + 0 + "px)";
+                            objX = 0;
+                        } else {
+                            $(obj).attr("isMove","ture");
+                            obj.style.WebkitTransform = "translateX(" + -120 + "px)";
+                            objX = -120;
+                        }
+                    }
+
+                }
+            })
+        });
+
     </script>
 </body>
 </html>
