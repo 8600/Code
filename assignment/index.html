@@ -229,14 +229,62 @@
             <div id="wancheng" class="switch_member btn btn-lg ripple switch_3">完成任务</div>
         </div>
     </header>
-    <section class="box">
+    <section id="box" class="box">
         <ul class="card">
+            <li class="item" ismove="false">
+                <div id="con" msgID="12122" class="con">
+                    <span class="i title">晚上聚2餐<span class="fa fa-thumb-tack"></span></span>
+                    <span class="i time fa fa-clock-o "> 2016.11.06 16:05:26</span>
+                    <span class="i name">杨伦</span>
+                    <span class="i assign">指派人:</span>
+                    <img class="i user_img" src="img/eg_tulip.png"/>
+                    <div class="clear"></div>
+                </div>
+                <div id="trash" class="btn1">结束</div>
+                <div id="top" class="btn2">置2顶</div>
+            </li>
+            <li class="item" ismove="false">
+                <div id="con" msgID="12122" class="con">
+                    <span class="i title">晚上2聚餐<span class="fa fa-thumb-tack"></span></span>
+                    <span class="i time fa fa-clock-o "> 2016.11.06 16:05:26</span>
+                    <span class="i name">杨伦</span>
+                    <span class="i assign">指派人:</span>
+                    <img class="i user_img" src="img/eg_tulip.png"/>
+                    <div class="clear"></div>
+                </div>
+                <div id="trash" class="btn1">结2束</div>
+                <div id="top" class="btn2">置顶</div>
+            </li>
             <li class="item" ismove="false">
                 <div id="con" msgID="12122" class="con">
                     <span class="i title">晚上聚餐<span class="fa fa-thumb-tack"></span></span>
                     <span class="i time fa fa-clock-o "> 2016.11.06 16:05:26</span>
                     <span class="i name">杨伦</span>
-                    <span class="i assign">指派人:</span>
+                    <span class="i assign">指2派人:</span>
+                    <img class="i user_img" src="img/eg_tulip.png"/>
+                    <div class="clear"></div>
+                </div>
+                <div id="trash" class="btn1">结束</div>
+                <div id="top" class="btn2">置2顶</div>
+            </li>
+            <li class="item" ismove="false">
+                <div id="con" msgID="12122" class="con">
+                    <span class="i title">晚上聚餐<span class="fa fa-thumb-tack"></span></span>
+                    <span class="i time fa fa-clock-o "> 2016.11.06 16:05:26</span>
+                    <span class="i name">杨伦</span>
+                    <span class="i assign">指2派人:</span>
+                    <img class="i user_img" src="img/eg_tulip.png"/>
+                    <div class="clear"></div>
+                </div>
+                <div id="trash" class="btn1">结束</div>
+                <div id="top" class="btn2">置2顶</div>
+            </li>
+            <li class="item" ismove="false">
+                <div id="con" msgID="12122" class="con">
+                    <span class="i title">晚上聚餐<span class="fa fa-thumb-tack"></span></span>
+                    <span class="i time fa fa-clock-o "> 2016.11.06 16:05:26</span>
+                    <span class="i name">杨伦</span>
+                    <span class="i assign">指派2人:</span>
                     <img class="i user_img" src="img/eg_tulip.png"/>
                     <div class="clear"></div>
                 </div>
@@ -379,9 +427,16 @@
                 }
             });
         }
+        function liMove(id,from,to) {
+            const t_nodeObj = $("#"+id+" li:eq(" + to + ")");
+            $(from).animate({ "width": "toggle" }, function () {
+                $(this).insertBefore($(t_nodeObj)).animate({ "width": "toggle" })
+            })
+
+        }
         //------------------------------DOM加载完毕事件------------------------------
         $(function () {
-            //getReceiveTask();
+            getReceiveTask();
             let initX; //触摸位置
             let moveX; //滑动时的位置
             let X = 0; //移动距离
@@ -394,7 +449,8 @@
                     case "zhipai":clear(Obj);vrv.jssdk.getAppointedTask({success: function (res) {tabClick(res);}});break;
                     case "shoudao":clear(Obj);getReceiveTask();break;
                     case "close":vrv.jssdk.closeView({});break;
-                    case "top":clickTopList(Obj.parentNode);break;
+                    //case "top":clickTopList(Obj.parentNode);break;
+                    case "top":liMove("box",Obj.parentNode,0);break;
 
                 }
             });
