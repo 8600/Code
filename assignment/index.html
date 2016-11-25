@@ -13,7 +13,7 @@
     body{
         height: 100%;
         width: 100%;
-        font-family: arial;
+        font-family:"Noto Sans CJK SC", "Source Han Sans CN";
     }
     header{
         background: -ms-linear-gradient(left, #2b90c9,  #60d1f5);
@@ -45,10 +45,10 @@
     header .switch{
         margin: 0 auto;
         width: 60%;
-        height: 65%;
+        height: 70%;
         position: relative;
-        top: 13%;
-        font-size: small;
+        top: 9%;
+        font-size: 0.9em;
         overflow: hidden;
         min-width: 233px;
         padding: 2px;
@@ -62,16 +62,16 @@
         border: 2px solid white;
     }
     .switch .switch_1{
-        border-bottom-left-radius: 15px;
-        border-top-left-radius: 15px;
+        border-bottom-left-radius: 10px;
+        border-top-left-radius: 10px;
     }
     .switch .switch_2{
         border-left: none;
         border-right: none;
     }
     .switch .switch_3{
-        border-bottom-right-radius: 15px;
-        border-top-right-radius: 15px;
+        border-bottom-right-radius: 10px;
+        border-top-right-radius: 10px;
     }
     .switch .is_active{
         color: #2694cd;
@@ -80,29 +80,31 @@
     .box .card{
         height: 100%;
         width: 100%;
+        overflow-y: auto;
     }
     .box .i{
         position: absolute;
         float: left;
     }
     .box .item{
-        height: 80px;
-        border-bottom: 1px solid #ece9e9;
+        height: 90px;
+        border-bottom: 1px solid #d6d6d6;
         position: relative;
+        transition: height 0.5s;
+        width: 100%;
     }
     .box .item .title{
         font-size: 130%;
         color: #595959;
         top: 27%;
-        left: 20px;
-        font-weight: 400;
+        left: 9px;
     }
     .box .item .time{
         font-size: 100%;
-        left: 20px;
+        left: 9px;
         bottom: 8%;
         color: #aaaaaa;
-        font-family: arial;
+        font-family:"Noto Sans CJK SC", "Source Han Sans CN";
     }
 
     .fa-clock-o:before {
@@ -114,15 +116,15 @@
     }
     .box .item .name{
         font-size: 77%;
-        bottom: 1px;
+        bottom: 10px;
         color: #aaaaaa;
         width: 70px;
         text-align: center;
-        right: 0px;
+        right: 0;
     }
     .box .item .assign{
         font-size: 77%;
-        bottom: 1%;
+        bottom: 10px;
         right: 54px;
         color: #aaaaaa;
     }
@@ -138,17 +140,32 @@
         top: 0;
         right: -60px;
         text-align: center;
-        background-color: #d5f1db;
-        color: #464124;
+        background-color: #d2cdcd;
+        color: #ffffff;
         width: 60px;
         height: 100%;
-        font-size: 1.4em;
-        line-height: 80px;
+        font-size: 1.2em;
+        line-height: 90px;
         border-bottom: 1px solid #ece9e9;
     }
-    .box .item .title .fa-thumb-tack{
-        color: #93a3d8;
-        padding-left: 5px;
+    .box .item .fa-thumb-tack{
+        color: white;
+        width: 0;
+        height: 0;
+        border-top: 25px solid #FF9800;
+        border-right: 25px solid transparent;
+    }
+    .box .item .fa-thumb-tack::before{
+        position: relative;
+        bottom: 25px;
+        right: -1px;
+    }
+    .box .item .toplist{
+        background-color: #fbfbfb;
+    }
+    .box .item .list{
+        width: 100%;
+        height: 100%;
     }
     .box .item .btn2::before{
         font-size: 200%;
@@ -185,12 +202,12 @@
         top: 0;
         right: -120px;
         text-align: center;
-        background-color: #cabdb6;
-        color: #464124;
+        background-color: #ff4400;
+        color: #ffffff;
         width: 60px;
         height: 100%;
-        font-size: 1.4em;
-        line-height: 80px;
+        font-size: 1.2em;
+        line-height: 90px;
         border-bottom: 1px solid #ece9e9;
     }
     .card {
@@ -200,7 +217,7 @@
     .item {
         border-bottom: 1px solid #fcfcfc;
         position: relative;
-        -webkit-transform: translateX(0px);
+        transform: translateX(0px);
     }
     .lalalal{
         width: 140px;
@@ -215,82 +232,71 @@
     .clear{
         clear:both;
     }
-    .con{
-        width: 100%;
-        height: 100%;
-    }
 </style>
 <body>
     <header>
-        <nav id="close" class="fa fa-angle-left"></nav>
+        <nav touchid="close" class="fa fa-angle-left"></nav>
         <div class="switch">
-            <div id="shoudao" class="switch_member btn btn-lg ripple switch_1 is_active">收到任务</div>
-            <div id="zhipai" class="switch_member btn btn-lg ripple switch_2">指派任务</div>
-            <div id="wancheng" class="switch_member btn btn-lg ripple switch_3">完成任务</div>
+            <div touchid="shoudao" class="switch_member btn btn-lg ripple switch_1 is_active">收到任务</div>
+            <div touchid="zhipai" class="switch_member btn btn-lg ripple switch_2">指派任务</div>
+            <div touchid="wancheng" class="switch_member btn btn-lg ripple switch_3">完成任务</div>
         </div>
     </header>
     <section id="box" class="box">
         <ul class="card">
             <li class="item" ismove="false">
-                <div id="con" msgID="12122" class="con">
-                    <span class="i title">晚上聚2餐<span class="fa fa-thumb-tack"></span></span>
+                <div touchid="con" msgID="12122" class="list toplist">
+                    <span class="i title">晚上聚2餐</span>
                     <span class="i time fa fa-clock-o "> 2016.11.06 16:05:26</span>
                     <span class="i name">杨伦</span>
                     <span class="i assign">指派人:</span>
                     <img class="i user_img" src="img/eg_tulip.png"/>
+                    <span class="corner_mark fa fa-thumb-tack"></span>
                     <div class="clear"></div>
                 </div>
-                <div id="trash" class="btn1">结束</div>
-                <div id="top" class="btn2">置2顶</div>
+                <div touchid="trash" class="btn1">结束</div>
+                <div touchid="top" class="btn2">置顶</div>
             </li>
             <li class="item" ismove="false">
-                <div id="con" msgID="12122" class="con">
-                    <span class="i title">晚上2聚餐<span class="fa fa-thumb-tack"></span></span>
+                <div touchid="con" msgID="12122" class="list">
+                    <span class="i title">晚上聚2餐</span>
                     <span class="i time fa fa-clock-o "> 2016.11.06 16:05:26</span>
                     <span class="i name">杨伦</span>
                     <span class="i assign">指派人:</span>
                     <img class="i user_img" src="img/eg_tulip.png"/>
+                    <span class="corner_mark fa"></span>
                     <div class="clear"></div>
                 </div>
-                <div id="trash" class="btn1">结2束</div>
-                <div id="top" class="btn2">置顶</div>
+                <div touchid="trash" class="btn1">结束</div>
+                <div touchid="top" class="btn2">置顶</div>
             </li>
             <li class="item" ismove="false">
-                <div id="con" msgID="12122" class="con">
-                    <span class="i title">晚上聚餐<span class="fa fa-thumb-tack"></span></span>
+                <div touchid="con" msgID="12122" class="list">
+                    <span class="i title">晚上聚2餐</span>
                     <span class="i time fa fa-clock-o "> 2016.11.06 16:05:26</span>
                     <span class="i name">杨伦</span>
-                    <span class="i assign">指2派人:</span>
+                    <span class="i assign">指派人:</span>
                     <img class="i user_img" src="img/eg_tulip.png"/>
+                    <span class="corner_mark fa"></span>
                     <div class="clear"></div>
                 </div>
-                <div id="trash" class="btn1">结束</div>
-                <div id="top" class="btn2">置2顶</div>
+                <div touchid="trash" class="btn1">结束</div>
+                <div touchid="top" class="btn2">置顶</div>
             </li>
             <li class="item" ismove="false">
-                <div id="con" msgID="12122" class="con">
-                    <span class="i title">晚上聚餐<span class="fa fa-thumb-tack"></span></span>
+                <div touchid="con" msgID="12122" class="list">
+                    <span class="i title">晚上聚2餐</span>
                     <span class="i time fa fa-clock-o "> 2016.11.06 16:05:26</span>
                     <span class="i name">杨伦</span>
-                    <span class="i assign">指2派人:</span>
+                    <span class="i assign">指派人:</span>
                     <img class="i user_img" src="img/eg_tulip.png"/>
+                    <span class="corner_mark fa"></span>
                     <div class="clear"></div>
                 </div>
-                <div id="trash" class="btn1">结束</div>
-                <div id="top" class="btn2">置2顶</div>
+                <div touchid="trash" class="btn1">结束</div>
+                <div touchid="top" class="btn2">置顶</div>
             </li>
-            <li class="item" ismove="false">
-                <div id="con" msgID="12122" class="con">
-                    <span class="i title">晚上聚餐<span class="fa fa-thumb-tack"></span></span>
-                    <span class="i time fa fa-clock-o "> 2016.11.06 16:05:26</span>
-                    <span class="i name">杨伦</span>
-                    <span class="i assign">指派2人:</span>
-                    <img class="i user_img" src="img/eg_tulip.png"/>
-                    <div class="clear"></div>
-                </div>
-                <div id="trash" class="btn1">结束</div>
-                <div id="top" class="btn2">置顶</div>
-            </li>
+
         </ul>
     </section>
     <footer></footer>
@@ -300,7 +306,7 @@
     <script>
         //列表数据
         vrv.init();
-        let topList="",otherList="";
+        let topList="",otherList="",menu=null;
         function chackEnd(isEnd) {
             if(isEnd){
                 $(".card").append(topList);
@@ -315,23 +321,24 @@
                     //临时加在一个图片 等图片sdk修复
                     const userImg ="img/img.png";
                     const userName = (sendUserId!="0")?owo.text.cutString(res,"remark=\'","\',"):"我";
-                    const onTop=(isTop=="1")?'<span class="fa fa-thumb-tack"></span>':"";
+                    const onTop=(isTop=="1")?'<span class="corner_mark fa fa-thumb-tack"></span>':'<span class="corner_mark fa"></span>';
+                    const classTop=(isTop=="1")?'list toplist':"list";
                     const onRead=(isRead=="1")?'':'<span class="fa fa-mixcloud"></span>';
-                    if(isTop=="1"||isRead!="1"){
-                        topList+='<li class="item" ismove="false" onclick="itemClick(this)"><div id="con" msgID="'+msgID+'" class="con"><span class="i title">'+title+
-                                onTop+onRead+'</span> <span class="i time fa fa-clock-o ">'+
-                                owo.time.getLocalTime2(time)+'</span> <span class="i name">'+
-                                userName+'</span> <span class="i assign">指派人:</span> <img class="i user_img" src="'+
-                                userImg+'"><div class="clear"></div></div><div id="trash" class="btn1">结束</div><div id="top" class="btn2">置顶</div></li>';
-                        chackEnd(isEnd);
-                    }
-                    else {
-                        otherList+='<li class="item" ismove="false" ID='+msgID+' onclick="itemClick(this)"><div id="con" msgID="'+msgID+'" class="con"><span class="i title">'+title+
-                                onTop+onRead+'</span> <span class="i time fa fa-clock-o ">'+owo.time.getLocalTime2(time)+'</span> <span class="i name">'+
-                                userName+'</span> <span class="i assign">指派人:</span> <img class="i user_img" src="'+
-                                userImg+'"><div class="clear"></div></div><div id="trash" class="btn1">结束</div><div id="top" class="btn2">置顶</div></li>';
-                        chackEnd(isEnd);
-                    }
+                    const list= '<li class="item" ismove="false">'+
+                                    '<div touchid="con" msgID="'+msgID+'" class="'+classTop+'">'+
+                                        '<span class="i title">'+ title+onRead+ '</span> '+
+                                        '<span class="i time fa fa-clock-o ">'+ owo.time.getLocalTime2(time)+'</span> '+
+                                        '<span class="i name">'+ userName+'</span>'+
+                                        '<span class="i assign">指派人:</span>'+
+                                        '<img touchid="img" class="i user_img" src="'+ userImg+'">'+onTop+
+                                        '<div class="clear"></div>'+
+                                    '</div>'+
+                                    '<div touchid="trash" class="btn1">结束</div>'+
+                                    '<div touchid="top" class="btn2">置顶</div>'+
+                                '</li>';
+                    if(isTop=="1"||isRead!="1"){topList+=list;}
+                    else {otherList+=list;}
+                    chackEnd(isEnd);
                 }
             });
         }
@@ -405,13 +412,12 @@
             const childrenDom =$(dom).children();
             //console.log(childrenDom[0]);
             const isTOP =($(childrenDom[0]).children().length>0) ? "1" :"0";
-            console.log(dom.getAttribute("ID"));
             window.location.href="details.html?"+"title="+childrenDom[0].innerText+"&time="+childrenDom[1].innerText+"&name="+childrenDom[2].innerText+"&msgID="+dom.getAttribute("msgID")+"&img="+childrenDom[4].src+"&isTOP="+isTOP;
         }
         //------------------------------清理已经激活的选项卡------------------------------
         function clear(dom) {
             $(".switch_member").removeClass("is_active");
-            $(this).addClass("is_active");
+            $(dom).addClass("is_active");
         }
         //------------------------------置顶事件------------------------------
         function clickTopList(dom) {
@@ -427,16 +433,32 @@
                 }
             });
         }
-        function liMove(id,from,to) {
-            const t_nodeObj = $("#"+id+" li:eq(" + to + ")");
+        //------------------------------列表置顶事件------------------------------
+        function liMove(from) {
+            const t_nodeObj = $("#box li:eq(0)");
             $(from).animate({ "width": "toggle" }, function () {
                 $(this).insertBefore($(t_nodeObj)).animate({ "width": "toggle" })
-            })
-
+            });
+            $(menu).attr("isMove","false");
+            menu.style.WebkitTransform = "translateX(" + 0 + "px)";
+            $(from.getElementsByClassName("list")).addClass("toplist");
+            $(from.getElementsByClassName("corner_mark")).addClass("fa-thumb-tack");
+            menu=null;
+        }
+        //------------------------------列表关闭事件------------------------------
+        function liClose(dom) {
+            $(dom).empty();
+            dom.style.border= 0;
+            dom.style.height=0;
         }
         //------------------------------DOM加载完毕事件------------------------------
         $(function () {
-            getReceiveTask();
+            try{
+                getReceiveTask();
+            }
+            catch(err) {
+                  alert("收取任务列表失败！");
+            }
             let initX; //触摸位置
             let moveX; //滑动时的位置
             let X = 0; //移动距离
@@ -444,35 +466,42 @@
             window.addEventListener('touchstart', function(event) {
                 event.preventDefault();
                 const Obj = event.target;
-                switch (Obj.id){
+                console.log(Obj);
+                switch (Obj.getAttribute("touchid")){
                     case "con":listTouch(initX,moveX,X,objX,Obj.parentNode);break;
                     case "zhipai":clear(Obj);vrv.jssdk.getAppointedTask({success: function (res) {tabClick(res);}});break;
                     case "shoudao":clear(Obj);getReceiveTask();break;
                     case "close":vrv.jssdk.closeView({});break;
                     //case "top":clickTopList(Obj.parentNode);break;
-                    case "top":liMove("box",Obj.parentNode,0);break;
-
+                    case "top":liMove(Obj.parentNode);break;
+                    case "trash":liClose(Obj.parentNode);break;
                 }
             });
             window.addEventListener('touchend', function(event) {
                 event.preventDefault();
-                var obj = event.target.parentNode;
+                const obj = event.target.parentNode;
                 if (obj.className == "item") {
                     objX = (obj.style.WebkitTransform.replace(/translateX\(/g, "").replace(/px\)/g, "")) * 1;
-                    if (objX==0&&$(obj).attr("isMove")=="false"){
-                        itemClick(event.target);
-                    }
-                    else {
-                        if (objX > -60) {
+                    //判断用户是想点击列表还是想划出菜单
+                    //if (objX==0&&$(obj).attr("isMove")=="false"&&menu!==null){
+                    //    itemClick(event.target);
+                    //}
+                    //else {
+                        if (objX > -60) { //关闭列表左滑菜单
                             $(obj).attr("isMove","false");
                             obj.style.WebkitTransform = "translateX(" + 0 + "px)";
-                            objX = 0;
-                        } else {
+                            menu=null;
+                        }
+                        else { //展开列表左滑菜单
+                            if(menu!==null){
+                                $(menu).attr("isMove","false");
+                                menu.style.WebkitTransform = "translateX(" + 0 + "px)";
+                            }
                             $(obj).attr("isMove","ture");
                             obj.style.WebkitTransform = "translateX(" + -120 + "px)";
-                            objX = -120;
+                            menu=obj;
                         }
-                    }
+                    //}
 
                 }
             })
