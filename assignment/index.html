@@ -227,16 +227,6 @@
         position: relative;
         transform: translateX(0px);
     }
-    .lalalal{
-        width: 140px;
-        height: 40px;
-        float: left;
-        z-index: 9999;
-        position: relative;
-        border: 1px solid black;
-        margin: 10px;
-        background-image: url("http://cdn.sspai.com/attachment/thumbnail/2016/11/16/c4751878eda16455dc60a6d6faabaf9756a2d_w_160_h_160_c_1.jpg");
-    }
     .clear{
         clear: both;
         width: 100%;
@@ -285,29 +275,21 @@
 
         function getUserProfile(isEnd,msgID,title,time,sendUserId,isTop,isRead,isFinish,targetID,title2) {
             let aa =true;
-            const userTitle =(title)?title:title2;
-
+            let userTitle =(title)?title:title2;
             const userID=(sendUserId=="0")?targetID:sendUserId;
             vrv.jssdk.getUserProfile({
                 userID:userID,
                 success: function (res) {
                     //临时加在一个图片 等图片sdk修复
                     //document.write(res);
-                    let userImg,userName;
-                    if(res&&res.indexOf("avatar")>=0){
-                        userImg="file://"+owo.text.cutString(res,"avatar=\'","\'}");
-
-                        userName = (!sendUserId=="0")?owo.text.cutString(res,"remark=\'","\',"):"我";
-                    }
-                    else {
-                        userImg="img/img.png";
-                        userName = "未知";
-                    }
+                    const noerror=res&&res.indexOf("avatar")>=0;
+                    const userImg=(noerror)?"file://"+owo.text.cutString(res,"avatar=\'","\'}"):"img/img.png";
+                    const userName=(noerror)?owo.text.cutString(res,"remark=\'","\',"):"未知";
                     const onTop=(isTop=="1")?'<span class="corner_mark fa fa-thumb-tack"></span>':'<span class="corner_mark fa"></span>';
                     const classTop=(isTop=="1")?'list toplist':"list";
                     const close =(isFinish=="1")?'还原':'结束';
                     const text=(isTop=="1")?'取消':"置顶";
-                    //alert("file://"+userImg);
+                    if(userTitle.length>5){userTitle=userTitle.slice(0,8)+"...";}
                     //const onRead=(isRead=="1")?'':'<span class="fa fa-mixcloud"></span>';
                     const list= '<li class="item" ismove="false">'+
                                     '<div touchid="con" msgID="'+msgID+'" class="'+classTop+'">'+
@@ -643,8 +625,7 @@
 
                 }
             });
-            $('img').error(function(){
-                alert("ssd");
+            $("img").one("error", function(e){
                 $(this).attr('src', "img/img.png");
             });
         });
