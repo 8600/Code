@@ -86,6 +86,9 @@ vrv.android = {
 	getAppointedTask : function (a) {
 		android.getAppointedTask(vrv.util.pre(a))
 	},
+	getHistoryTasks : function (a) {
+		android.getHistoryTasks(vrv.util.pre(a))
+	},
 	updateTask : function (a) {
 		android.updateTask(vrv.util.pre(a))
 	},
@@ -174,6 +177,9 @@ vrv.ios = {
 	},
 	getAppointedTask : function (a) {
 		vrv.util.callIOS("getAppointedTask", a)
+	},
+	getHistoryTasks : function (a) {
+		vrv.util.callIOS("getHistoryTasks", a)
 	},
 	updateTask : function (a) {
 		vrv.util.callIOS("updateTask", a)

@@ -13,14 +13,10 @@
     body{
         height: 100%;
         width: 100%;
-        font-family:"Noto Sans CJK SC", "Source Han Sans CN";
+        font-family:"Noto Sans CJK SC", "Source Han Sans CN","serif";
     }
     header{
-        background: -ms-linear-gradient(left, #2b90c9,  #60d1f5);
-        background:-moz-linear-gradient(left,#2b90c9,#60d1f5);
-        background: -webkit-gradient(linear, 0% 0%, 0% 100%,from(#2b90c9), to(#60d1f5));
-        background: -webkit-linear-gradient(left, #2b90c9, #60d1f5);
-        background: -o-linear-gradient(left, #2b90c9, #60d1f5);
+        background: #003658;
         height: 50px;
         line-height: 50px;
         color: white;
@@ -59,7 +55,7 @@
         float: left;
         text-align: center;
         line-height: 32px;
-        border: 2px solid white;
+        border: 1px solid white;
     }
     .switch .switch_1{
         border-bottom-left-radius: 10px;
@@ -87,24 +83,32 @@
         float: left;
     }
     .box .item{
-        height: 90px;
+        height: 80px;
         border-bottom: 1px solid #d6d6d6;
         position: relative;
         transition: height 0.5s;
         width: 100%;
     }
     .box .item .title{
-        font-size: 130%;
-        color: #595959;
-        top: 27%;
-        left: 9px;
+        font-size: 1.2em;
+        color: rgb(93, 156, 236);
+        left: 100px;
+        font-weight: bolder;
+        width: 67%;
+        border-bottom: 2px solid #ebe8e9;
+        top: 13px;
+        padding-bottom: 6px;
+        display: block;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
     .box .item .time{
-        font-size: 100%;
-        left: 9px;
-        bottom: 8%;
-        color: #aaaaaa;
-        font-family:"Noto Sans CJK SC", "Source Han Sans CN";
+        font-size: 1em;
+        left: 100px;
+        color: #54c3b8;
+        font-family: arial;
+        bottom: 12px;
     }
 
     .fa-clock-o:before {
@@ -115,25 +119,26 @@
         font: normal normal normal 14px/1 FontAwesome;
     }
     .box .item .name{
-        font-size: 77%;
-        bottom: 10px;
-        color: #aaaaaa;
+        font-size: 0.8em;
+        bottom: 42px;
+        color: #bcb5c1;
         width: 70px;
         text-align: center;
-        right: 0;
+        left: 77%;
+        font-weight: bold;
     }
     .box .item .assign{
-        font-size: 77%;
-        bottom: 10px;
-        right: 54px;
+        font-size: 0.4em;
+        left: 75%;
         color: #aaaaaa;
+        bottom: 42px;
     }
     .box .item .user_img{
-        top: 7%;
-        right: 9px;
-        width: 55px;
-        height: 55px;
-        border-radius: 6px;
+        top: 10px;
+        left: 20px;
+        width: 60px;
+        height: 60px;
+        border-radius: 10px;
     }
     .box .item .btn2{
         position: absolute;
@@ -145,7 +150,7 @@
         width: 60px;
         height: 100%;
         font-size: 1.2em;
-        line-height: 90px;
+        line-height: 80px;
         border-bottom: 1px solid #ece9e9;
     }
     .box .item .fa-thumb-tack{
@@ -161,7 +166,10 @@
         right: -1px;
     }
     .box .item .toplist{
-        background-color: #fbfbfb;
+        background-color: #f5f5f5;
+    }
+    .box .item .toplist .title{
+        border-bottom: 2px solid #b6c3c3;
     }
     .box .item .list{
         width: 100%;
@@ -207,7 +215,7 @@
         width: 60px;
         height: 100%;
         font-size: 1.2em;
-        line-height: 90px;
+        line-height: 80px;
         border-bottom: 1px solid #ece9e9;
     }
     .card {
@@ -230,7 +238,21 @@
         background-image: url("http://cdn.sspai.com/attachment/thumbnail/2016/11/16/c4751878eda16455dc60a6d6faabaf9756a2d_w_160_h_160_c_1.jpg");
     }
     .clear{
-        clear:both;
+        clear: both;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 999;
+    }
+    .debug{
+        position: absolute;
+        font-size: 2em;
+        z-index: 999;
+        right: 0;
+        bottom: 0;
+        color: rgba(139, 212, 137, 0.53);
     }
 </style>
 <body>
@@ -243,98 +265,61 @@
         </div>
     </header>
     <section id="box" class="box">
-        <ul class="card">
-            <li class="item" ismove="false">
-                <div touchid="con" msgID="12122" class="list toplist">
-                    <span class="i title">晚上聚2餐</span>
-                    <span class="i time fa fa-clock-o "> 2016.11.06 16:05:26</span>
-                    <span class="i name">杨伦</span>
-                    <span class="i assign">指派人:</span>
-                    <img class="i user_img" src="img/eg_tulip.png"/>
-                    <span class="corner_mark fa fa-thumb-tack"></span>
-                    <div class="clear"></div>
-                </div>
-                <div touchid="trash" class="btn1">结束</div>
-                <div touchid="top" class="btn2">置顶</div>
-            </li>
-            <li class="item" ismove="false">
-                <div touchid="con" msgID="12122" class="list">
-                    <span class="i title">晚上聚2餐</span>
-                    <span class="i time fa fa-clock-o "> 2016.11.06 16:05:26</span>
-                    <span class="i name">杨伦</span>
-                    <span class="i assign">指派人:</span>
-                    <img class="i user_img" src="img/eg_tulip.png"/>
-                    <span class="corner_mark fa"></span>
-                    <div class="clear"></div>
-                </div>
-                <div touchid="trash" class="btn1">结束</div>
-                <div touchid="top" class="btn2">置顶</div>
-            </li>
-            <li class="item" ismove="false">
-                <div touchid="con" msgID="12122" class="list">
-                    <span class="i title">晚上聚2餐</span>
-                    <span class="i time fa fa-clock-o "> 2016.11.06 16:05:26</span>
-                    <span class="i name">杨伦</span>
-                    <span class="i assign">指派人:</span>
-                    <img class="i user_img" src="img/eg_tulip.png"/>
-                    <span class="corner_mark fa"></span>
-                    <div class="clear"></div>
-                </div>
-                <div touchid="trash" class="btn1">结束</div>
-                <div touchid="top" class="btn2">置顶</div>
-            </li>
-            <li class="item" ismove="false">
-                <div touchid="con" msgID="12122" class="list">
-                    <span class="i title">晚上聚2餐</span>
-                    <span class="i time fa fa-clock-o "> 2016.11.06 16:05:26</span>
-                    <span class="i name">杨伦</span>
-                    <span class="i assign">指派人:</span>
-                    <img class="i user_img" src="img/eg_tulip.png"/>
-                    <span class="corner_mark fa"></span>
-                    <div class="clear"></div>
-                </div>
-                <div touchid="trash" class="btn1">结束</div>
-                <div touchid="top" class="btn2">置顶</div>
-            </li>
-
-        </ul>
+        <ul class="card"></ul>
     </section>
-    <footer></footer>
+    <footer class="foot"></footer>
     <script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
     <script type="text/javascript" src="js/vrv-jssdk-v1.3.js"></script>
     <script type="text/javascript" src="js/owo.js"></script>
     <script>
         //列表数据
         vrv.init();
-        let topList="",otherList="",menu=null;
+        let topList="",otherList="",menu=null;isdebug=false;
         function chackEnd(isEnd) {
             if(isEnd){
-                $(".card").append(topList);
-                $(".card").append(otherList);
+                const card =$(".card");
+                card.append(topList);
+                card.append(otherList);
             }
         }
 
-        function getUserProfile(isEnd,msgID,title,time,sendUserId,isTop,isRead) {
+        function getUserProfile(isEnd,msgID,title,time,sendUserId,isTop,isRead,isFinish,targetID,title2) {
+            let aa =true;
+            const userTitle =(title)?title:title2;
+
+            const userID=(sendUserId=="0")?targetID:sendUserId;
             vrv.jssdk.getUserProfile({
-                userID:sendUserId,
+                userID:userID,
                 success: function (res) {
                     //临时加在一个图片 等图片sdk修复
-                    const userImg ="img/img.png";
-                    const userName = (sendUserId!="0")?owo.text.cutString(res,"remark=\'","\',"):"我";
+                    //document.write(res);
+                    let userImg,userName;
+                    if(res&&res.indexOf("avatar")>=0){
+                        userImg="file://"+owo.text.cutString(res,"avatar=\'","\'}");
+
+                        userName = (!sendUserId=="0")?owo.text.cutString(res,"remark=\'","\',"):"我";
+                    }
+                    else {
+                        userImg="img/img.png";
+                        userName = "未知";
+                    }
                     const onTop=(isTop=="1")?'<span class="corner_mark fa fa-thumb-tack"></span>':'<span class="corner_mark fa"></span>';
                     const classTop=(isTop=="1")?'list toplist':"list";
-                    const onRead=(isRead=="1")?'':'<span class="fa fa-mixcloud"></span>';
+                    const close =(isFinish=="1")?'还原':'结束';
+                    const text=(isTop=="1")?'取消':"置顶";
+                    //alert("file://"+userImg);
+                    //const onRead=(isRead=="1")?'':'<span class="fa fa-mixcloud"></span>';
                     const list= '<li class="item" ismove="false">'+
                                     '<div touchid="con" msgID="'+msgID+'" class="'+classTop+'">'+
-                                        '<span class="i title">'+ title+onRead+ '</span> '+
+                                        '<span class="i title">'+ userTitle+ '</span> '+
                                         '<span class="i time fa fa-clock-o ">'+ owo.time.getLocalTime2(time)+'</span> '+
                                         '<span class="i name">'+ userName+'</span>'+
                                         '<span class="i assign">指派人:</span>'+
                                         '<img touchid="img" class="i user_img" src="'+ userImg+'">'+onTop+
-                                        '<div class="clear"></div>'+
                                     '</div>'+
-                                    '<div touchid="trash" class="btn1">结束</div>'+
-                                    '<div touchid="top" class="btn2">置顶</div>'+
+                                    '<div touchid="con" class="clear"></div>'+
+                                    '<div touchid="trash" class="btn1">'+close+'</div>'+
+                                    '<div touchid="top" class="btn2">'+text+'</div>'+
                                 '</li>';
                     if(isTop=="1"||isRead!="1"){topList+=list;}
                     else {otherList+=list;}
@@ -343,24 +328,24 @@
             });
         }
 
-        //-------------------------------切换列表事件-------------------------------
-        function tabClick(res) {
-            //清空列表中的条目
-            $(".card").empty();topList="";otherList="";
-            const title =owo.text.cutStringArray(res,'body\":\"','\"}'),time = owo.text.cutStringArray(res,"sendTime=",","),sendUserId = owo.text.cutStringArray(res,"fromID=",","),msgID = owo.text.cutStringArray(res,"msgID=",","),isTop = owo.text.cutStringArray(res,"top=","}"),isRead = owo.text.cutStringArray(res,"isRead=","}");
+        //-------------------------------增加任务列表事件-------------------------------
+        function addItem(res) {
+            topList="";otherList="";
+            const   title =owo.text.cutStringArray(res,'body\":\"','\",'),
+                    title2 =owo.text.cutStringArray(res,'body\":\"','\"}'),
+                    time = owo.text.cutStringArray(res,"sendTime=",","),
+                    sendUserId = owo.text.cutStringArray(res,"fromID=",","),
+                    msgID = owo.text.cutStringArray(res,"msgID=",","),
+                    isTop = owo.text.cutStringArray(res,"top=","}"),
+                    isFinish = owo.text.cutStringArray(res,"isFinish=",","),
+                    isRead = owo.text.cutStringArray(res,"isRead=","}");
+                    targetID = owo.text.cutStringArray(res,"targetID=",",");
             for(let index=0;index<title.length;index++){
-                const isEnd =(index>=title.length-1)?true:false;
-                getUserProfile(isEnd,msgID[index],title[index],time[index],sendUserId[index],isTop[index],isRead[index]);
+                const isEnd =index>=title.length-1;
+                getUserProfile(isEnd,msgID[index],title[index],time[index],sendUserId[index],isTop[index],isRead[index],isFinish[index],targetID[index],title2[index]);
             }
         }
-        //获取收到的任务
-        function getReceiveTask() {
-            vrv.jssdk.getReceiveTask({
-                success: function (res) {
-                    tabClick(res);
-                }
-            });
-        }
+
         //列表被开始触摸发生的函数
         function listTouch(initX,moveX,X,objX,obj) {
             initX = event.targetTouches[0].pageX;
@@ -407,6 +392,7 @@
                 });
             }
         }
+
         //------------------------------任务列表点击事件------------------------------
         function itemClick(dom) {
             const childrenDom =$(dom).children();
@@ -414,50 +400,201 @@
             const isTOP =($(childrenDom[0]).children().length>0) ? "1" :"0";
             window.location.href="details.html?"+"title="+childrenDom[0].innerText+"&time="+childrenDom[1].innerText+"&name="+childrenDom[2].innerText+"&msgID="+dom.getAttribute("msgID")+"&img="+childrenDom[4].src+"&isTOP="+isTOP;
         }
+
         //------------------------------清理已经激活的选项卡------------------------------
         function clear(dom) {
+            $(".card").empty();
             $(".switch_member").removeClass("is_active");
             $(dom).addClass("is_active");
         }
-        //------------------------------置顶事件------------------------------
-        function clickTopList(dom) {
-            const testID =$(dom).children()[0].getAttribute("msgID");
-            vrv.jssdk.updateTask({
-                msgID:parseInt(testID),
-                isFinish:false,
-                isRead:false,
-                isTop:true,
-                isTask:true,
-                success: function (res) {
-                    alert("sd");
-                }
-            });
-        }
+
         //------------------------------列表置顶事件------------------------------
-        function liMove(from) {
-            const t_nodeObj = $("#box li:eq(0)");
-            $(from).animate({ "width": "toggle" }, function () {
-                $(this).insertBefore($(t_nodeObj)).animate({ "width": "toggle" })
-            });
-            $(menu).attr("isMove","false");
-            menu.style.WebkitTransform = "translateX(" + 0 + "px)";
-            $(from.getElementsByClassName("list")).addClass("toplist");
-            $(from.getElementsByClassName("corner_mark")).addClass("fa-thumb-tack");
-            menu=null;
+        function liMove(from,Obj) {
+            //$(menu.children[1]).css('display','none')
+            if(Obj.innerText=="置顶"){
+                const t_nodeObj = $("#box li:eq(0)");
+                $(menu).attr("isMove","false");
+                $(Obj).html("还原");
+
+                menu.style.WebkitTransform = "translateX(" + 0 + "px)";
+                $(from.getElementsByClassName("list")).addClass("toplist");
+                $(from.getElementsByClassName("corner_mark")).addClass("fa-thumb-tack");
+                //如果不是debug模式 调用sdk置顶
+                if(!isdebug){
+                    vrv.jssdk.updateTask({
+                        msgID:$(from).children()[0].getAttribute("msgID"),
+                        isTop:"true",
+                        success: function (res) {
+                            //alert("sd");
+                        }
+                    });
+                }
+                menu=null;
+                $(from).animate({ "width": "toggle" }, function () {
+                    $(this).insertBefore($(t_nodeObj)).animate({ "width": "toggle" })
+                });
+            }
+            else if(Obj.innerText=="取消") {
+                const t_nodeObj = $("#box li:eq(-1)");
+
+                $(menu).attr("isMove","false");
+                $(Obj).html("置顶");
+                menu.style.WebkitTransform = "translateX(" + 0 + "px)";
+                $(from.getElementsByClassName("list")).removeClass("toplist");
+                $(from.getElementsByClassName("corner_mark")).removeClass("fa-thumb-tack");
+                //如果不是debug模式 调用sdk取消置顶
+                if(!isdebug){
+                    vrv.jssdk.updateTask({
+                        msgID:$(from).children()[0].getAttribute("msgID"),
+                        isTop:"false",
+                        success: function (res) {
+                            //alert("sd");
+                        }
+                    });
+                }
+                menu=null;
+                $(from).animate({ "width": "toggle" }, function () {
+                    $(this).insertAfter($(t_nodeObj)).animate({ "width": "toggle" })
+                });
+            }
         }
+
         //------------------------------列表关闭事件------------------------------
-        function liClose(dom) {
+        function liClose(dom,Obj) {
+            if(Obj.innerText=="结束"){
+                //如果不是debug模式 调用sdk关闭任务
+                if(!isdebug){
+                    vrv.jssdk.updateTask({
+                        msgID:$(dom).children()[0].getAttribute("msgID"),
+                        isFinish:"true",
+                        success: function (res) {
+                            //alert("sd");
+                        }
+                    });
+                }
+            }
+            else {
+                if(!isdebug){
+                    vrv.jssdk.updateTask({
+                        msgID:$(dom).children()[0].getAttribute("msgID"),
+                        isFinish:"false",
+                        success: function (res) {
+                            //alert("sd");
+                        }
+                    });
+                }
+            }
             $(dom).empty();
             dom.style.border= 0;
             dom.style.height=0;
         }
-        //------------------------------DOM加载完毕事件------------------------------
-        $(function () {
-            try{
-                getReceiveTask();
+
+        //TTTTTTTTTTTTTTTTTTTTTTTTTTTTTT点击收到任务事件TTTTTTTTTTTTTTTTTTTTTTTTTTTTTT
+        function getReceiveTask() {
+            if(!isdebug){
+                vrv.jssdk.getReceiveTask({
+                    success: function (res) {
+                        addItem(res);
+                    }
+                });
             }
+            else {
+                const msgID=[100,101,102,103,104];
+                const classTop=["list toplist","list toplist","list","list","list"];
+                const title = ["增加移动适配","税务发票报销","经营状况统计","组织聚餐活动","明天早上开会"];
+                const onTop=['<span class="corner_mark fa fa-thumb-tack"></span>','<span class="corner_mark fa fa-thumb-tack"></span>','<span class="corner_mark fa"></span>','<span class="corner_mark fa"></span>','<span class="corner_mark fa"></span>'];
+                const text=["取消","取消","置顶","置顶","置顶"];
+                msgID.forEach(function (e,i) {
+                    const list= '<li class="item" ismove="false">'+
+                            '<div touchid="con" msgID="'+e+'" class="'+classTop[i]+'">'+
+                            '<span class="i title">'+ title[i]+ '</span> '+
+                            '<span class="i time fa fa-clock-o ">'+ "2016年2月9日 16:06:32"+'</span> '+
+                            '<span class="i name">'+ "测试员"+'</span>'+
+                            '<span class="i assign">指派人:</span>'+
+                            '<img touchid="img" class="i user_img" src="'+ "img/img.png"+'">'+onTop[i]+
+                            '</div>'+
+                            '<div touchid="con" class="clear"></div>'+
+                            '<div touchid="trash" class="btn1">结束</div>'+
+                            '<div touchid="top" class="btn2">'+text[i]+'</div>'+
+                            '</li>';
+                    $(".card").append(list);
+                });
+            }
+        }
+
+        //TTTTTTTTTTTTTTTTTTTTTTTTTTTTTT点击指派任务事件TTTTTTTTTTTTTTTTTTTTTTTTTTTTTT
+        function appointedTask() {
+            if(!isdebug){
+                vrv.jssdk.getAppointedTask({
+                    success: function (res) {addItem(res);
+                    }
+                });
+            }
+            else {
+                const msgID=[100,101,102];
+                const classTop=["list toplist","list","list"];
+                const title = ["组织聚餐活动","税务发票报销","经营状况统计"];
+                const onTop=['<span class="corner_mark fa fa-thumb-tack"></span>','<span class="corner_mark fa"></span>','<span class="corner_mark fa"></span>'];
+                const text=["取消","置顶","置顶"];
+                msgID.forEach(function (e,i) {
+                    const list= '<li class="item" ismove="false">'+
+                            '<div touchid="con" msgID="'+e+'" class="'+classTop[i]+'">'+
+                            '<span class="i title">'+ title[i]+ '</span> '+
+                            '<span class="i time fa fa-clock-o ">'+ "2016年2月9日 16:06:32"+'</span> '+
+                            '<span class="i name">'+ "测试员"+'</span>'+
+                            '<span class="i assign">指派人:</span>'+
+                            '<img touchid="img" class="i user_img" src="'+ "img/img.png"+'">'+onTop[i]+
+                            '<div class="clear"></div>'+
+                            '</div>'+
+                            '<div touchid="trash" class="btn1">结束</div>'+
+                            '<div touchid="top" class="btn2">'+text[i]+'</div>'+
+                            '</li>';
+                    $(".card").append(list);
+                });
+            }
+        }
+
+        //TTTTTTTTTTTTTTTTTTTTTTTTTTTTTT点击完成任务事件TTTTTTTTTTTTTTTTTTTTTTTTTTTTTT
+        function getFinishTask() {
+            if(!isdebug){
+                vrv.jssdk.getHistoryTasks({
+                    success: function (res) {
+                        //document.write(res);
+                        addItem(res);
+                    }
+                });
+            }
+            else {
+                const msgID=[100,101,102];
+                const classTop=["list toplist","list","list"];
+                const title = ["组织游玩","个人银行开户","快递签收"];
+                const onTop=['<span class="corner_mark fa fa-thumb-tack"></span>','<span class="corner_mark fa"></span>','<span class="corner_mark fa"></span>'];
+                const text=["取消","置顶","置顶"];
+                msgID.forEach(function (e,i) {
+                    const list= '<li class="item" ismove="false">'+
+                            '<div  msgID="'+e+'" class="'+classTop[i]+'">'+
+                            '<span class="i title">'+ title[i]+ '</span> '+
+                            '<span class="i time fa fa-clock-o ">'+ "2016年2月9日 16:06:32"+'</span> '+
+                            '<span class="i name">'+ "测试员"+'</span>'+
+                            '<span class="i assign">指派人:</span>'+
+                            '<img touchid="img" class="i user_img" src="'+ "img/img.png"+'">'+onTop[i]+
+                            '</div>'+
+                            '<div touchid="con" class="clear"></div>'+
+                            '<div touchid="trash" class="btn1">结束</div>'+
+                            '<div touchid="top" class="btn2">'+text[i]+'</div>'+
+                            '</li>';
+                    $(".card").append(list);
+                });
+            }
+        }
+
+        //******************************DOM加载完毕事件******************************
+        $(function () {
+            try{ getReceiveTask(); vrv.jssdk.showNavigationBar({success: function (res) {}});}
             catch(err) {
-                  alert("收取任务列表失败！");
+                isdebug=true;
+                getReceiveTask();
+                $(".foot").append('<span class="debug">调试模式</span>');
             }
             let initX; //触摸位置
             let moveX; //滑动时的位置
@@ -466,15 +603,15 @@
             window.addEventListener('touchstart', function(event) {
                 event.preventDefault();
                 const Obj = event.target;
-                console.log(Obj);
                 switch (Obj.getAttribute("touchid")){
                     case "con":listTouch(initX,moveX,X,objX,Obj.parentNode);break;
-                    case "zhipai":clear(Obj);vrv.jssdk.getAppointedTask({success: function (res) {tabClick(res);}});break;
+                    case "zhipai":clear(Obj);appointedTask();break;
                     case "shoudao":clear(Obj);getReceiveTask();break;
+                    case "wancheng":clear(Obj);getFinishTask();break;
                     case "close":vrv.jssdk.closeView({});break;
                     //case "top":clickTopList(Obj.parentNode);break;
-                    case "top":liMove(Obj.parentNode);break;
-                    case "trash":liClose(Obj.parentNode);break;
+                    case "top":liMove(Obj.parentNode,Obj);break;
+                    case "trash":liClose(Obj.parentNode,Obj);break;
                 }
             });
             window.addEventListener('touchend', function(event) {
@@ -482,6 +619,7 @@
                 const obj = event.target.parentNode;
                 if (obj.className == "item") {
                     objX = (obj.style.WebkitTransform.replace(/translateX\(/g, "").replace(/px\)/g, "")) * 1;
+                    //console.log(objX);
                     //判断用户是想点击列表还是想划出菜单
                     //if (objX==0&&$(obj).attr("isMove")=="false"&&menu!==null){
                     //    itemClick(event.target);
@@ -504,7 +642,11 @@
                     //}
 
                 }
-            })
+            });
+            $('img').error(function(){
+                alert("ssd");
+                $(this).attr('src', "img/img.png");
+            });
         });
 
     </script>
