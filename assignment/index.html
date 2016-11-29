@@ -13,7 +13,7 @@
     body{
         height: 100%;
         width: 100%;
-        font-family:"Noto Sans CJK SC", "Source Han Sans CN","serif";
+        font-family:"Helvetica","serif";
     }
     header{
         background: #003658;
@@ -24,7 +24,7 @@
         min-width: 300px;
     }
     section{
-        background-color:white;
+        background-color:rgba(0, 54, 88, 0.1);
         width:100%;
         overflow:auto;
         top:50px;
@@ -88,6 +88,9 @@
         position: relative;
         transition: height 0.5s;
         width: 100%;
+        box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.19);
+        margin-bottom: 3px;
+        background-color: white;
     }
     .box .item .title{
         font-size: 1.2em;
@@ -107,7 +110,7 @@
         font-size: 1em;
         left: 100px;
         color: #54c3b8;
-        font-family: arial;
+        font-family: Helvetica;
         bottom: 12px;
     }
 
@@ -151,7 +154,8 @@
         height: 100%;
         font-size: 1.2em;
         line-height: 80px;
-        border-bottom: 1px solid #ece9e9;
+        border-bottom: 1px solid #d2cdcd;
+        box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.19);
     }
     .box .item .fa-thumb-tack{
         color: white;
@@ -166,7 +170,7 @@
         right: -1px;
     }
     .box .item .toplist{
-        background-color: #f5f5f5;
+        background-color: rgb(241, 241, 241);
     }
     .box .item .toplist .title{
         border-bottom: 2px solid #b6c3c3;
@@ -216,7 +220,8 @@
         height: 100%;
         font-size: 1.2em;
         line-height: 80px;
-        border-bottom: 1px solid #ece9e9;
+        border-bottom: 1px solid #ff4400;
+        box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.19);
     }
     .card {
         overflow: hidden
@@ -297,13 +302,13 @@
                                         '<span class="i time fa fa-clock-o ">'+ owo.time.getLocalTime2(time)+'</span> '+
                                         '<span class="i name">'+ userName+'</span>'+
                                         '<span class="i assign">指派人:</span>'+
-                                        '<img touchid="img" class="i user_img" src="'+ userImg+'">'+onTop+
+                                        '<img touchid="img" class="i user_img" src="'+ "img/img.png"+'">'+onTop+
                                     '</div>'+
                                     '<div touchid="con" class="clear"></div>'+
                                     '<div touchid="trash" class="btn1">'+close+'</div>'+
                                     '<div touchid="top" class="btn2">'+text+'</div>'+
                                 '</li>';
-                    if(isTop=="1"||isRead!="1"){topList+=list;}
+                    if(isTop=="1"){topList+=list;}
                     else {otherList+=list;}
                     chackEnd(isEnd);
                 }
@@ -396,7 +401,7 @@
             if(Obj.innerText=="置顶"){
                 const t_nodeObj = $("#box li:eq(0)");
                 $(menu).attr("isMove","false");
-                $(Obj).html("还原");
+                $(Obj).html("取消");
 
                 menu.style.WebkitTransform = "translateX(" + 0 + "px)";
                 $(from.getElementsByClassName("list")).addClass("toplist");
