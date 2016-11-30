@@ -95,7 +95,7 @@
     .box .item .title{
         font-size: 1.2em;
         color: rgb(93, 156, 236);
-        left: 100px;
+        left: 90px;
         font-weight: bolder;
         width: 67%;
         border-bottom: 2px solid #ebe8e9;
@@ -108,7 +108,7 @@
     }
     .box .item .time{
         font-size: 1em;
-        left: 100px;
+        left: 90px;
         color: #54c3b8;
         font-family: Helvetica;
         bottom: 12px;
@@ -138,7 +138,7 @@
     }
     .box .item .user_img{
         top: 10px;
-        left: 20px;
+        left: 10px;
         width: 60px;
         height: 60px;
         border-radius: 10px;
@@ -159,15 +159,17 @@
     }
     .box .item .fa-thumb-tack{
         color: white;
+        position: absolute;
+        right: 0;
         width: 0;
         height: 0;
-        border-top: 25px solid #FF9800;
-        border-right: 25px solid transparent;
+        border-top: 25px solid  #FF9800;
+        border-left: 25px solid transparent;
     }
     .box .item .fa-thumb-tack::before{
         position: relative;
         bottom: 25px;
-        right: -1px;
+        right: 13px;
     }
     .box .item .toplist{
         background-color: rgba(0, 54, 88, 0.06);
@@ -279,21 +281,46 @@
         }
 
         function getUserProfile(isEnd,msgID,title,time,sendUserId,isTop,isRead,isFinish,targetID,title2) {
-            let aa =true;
-            let userTitle =(title)?title:title2;
+            let name="指派人:";
+            //判断是收到任务还是指派任务
+            if(sendUserId=="0"){
+                sendUserId=targetID;
+                name="接受人:";
+            }
             const userID=(sendUserId=="0")?targetID:sendUserId;
             vrv.jssdk.getUserProfile({
                 userID:userID,
                 success: function (res) {
-                    //临时加在一个图片 等图片sdk修复
                     //document.write(res);
-                    const noerror=res&&res.indexOf("avatar")>=0;
-                    const userImg=(noerror)?"file://"+owo.text.cutString(res,"avatar=\'","\'}"):"img/img.png";
-                    const userName=(noerror)?owo.text.cutString(res,"remark=\'","\',"):"未知";
-                    const onTop=(isTop=="1")?'<span class="corner_mark fa fa-thumb-tack"></span>':'<span class="corner_mark fa"></span>';
-                    const classTop=(isTop=="1")?'list toplist':"list";
+
+                    //-------------------------------------------------------------
+                    let onTop,classTop,userImg,userName,text,userTitle;
+                    //根据是否置顶  的不同处理方法
+                    if(isTop=="1"){
+                        onTop='<span class="corner_mark fa fa-thumb-tack"></span>';
+                        classTop='list toplist';
+                        text='取消';
+                    }
+                    else {
+                        onTop='<span class="corner_mark fa"></span>';
+                        classTop='list';
+                        text='置顶';
+                    }
+                    //根据获取用户信息是否正常返回处理方法
+                    if(res&&res.indexOf("avatar")>=0){
+                        //如果页面在服务器上 那么头像是取不到的
+                        if(window.location.href.indexOf("ttp")>=1){userImg="img/img.png";}
+                        else {userImg="file://"+owo.text.cutString(res,"avatar=\'","\'}");}
+                        userName =owo.text.cutString(res,"remark=\'","\',");
+                    }
+                    else {
+                        userImg="img/img.png";
+                        userName = "未知";
+                    }
                     const close =(isFinish=="1")?'还原':'结束';
-                    const text=(isTop=="1")?'取消':"置顶";
+                    userTitle =(title)?title:title2;
+                    //-------------------------------------------------------------
+
                     if(userTitle.length>5){userTitle=userTitle.slice(0,8)+"...";}
                     //const onRead=(isRead=="1")?'':'<span class="fa fa-mixcloud"></span>';
                     const list= '<li class="item" ismove="false">'+
@@ -301,8 +328,8 @@
                                         '<span class="i title">'+ userTitle+ '</span> '+
                                         '<span class="i time fa fa-clock-o ">'+ owo.time.getLocalTime2(time)+'</span> '+
                                         '<span class="i name">'+ userName+'</span>'+
-                                        '<span class="i assign">指派人:</span>'+
-                                        '<img touchid="img" class="i user_img" src="'+ "img/img.png"+'">'+onTop+
+                                        '<span class="i assign">'+name+'</span>'+
+                                        '<img touchid="img" class="i user_img" src="'+ userImg+'">'+onTop+
                                     '</div>'+
                                     '<div touchid="con" class="clear"></div>'+
                                     '<div touchid="trash" class="btn1">'+close+'</div>'+
@@ -327,6 +354,8 @@
                     isFinish = owo.text.cutStringArray(res,"isFinish=",","),
                     isRead = owo.text.cutStringArray(res,"isRead=","}");
                     targetID = owo.text.cutStringArray(res,"targetID=",",");
+            //如果第一种方法没有取到标题 换 第二种方法
+
             for(let index=0;index<title.length;index++){
                 const isEnd =index>=title.length-1;
                 getUserProfile(isEnd,msgID[index],title[index],time[index],sendUserId[index],isTop[index],isRead[index],isFinish[index],targetID[index],title2[index]);
@@ -390,65 +419,62 @@
 
         //------------------------------清理已经激活的选项卡------------------------------
         function clear(dom) {
+            $('#chatAudio')[0].play();
             $(".card").empty();
             $(".switch_member").removeClass("is_active");
             $(dom).addClass("is_active");
-            $('#chatAudio')[0].play();
         }
 
         //------------------------------列表置顶事件------------------------------
         function liMove(from,Obj) {
-            //$(menu.children[1]).css('display','none')
+            $('#chatAudio')[0].play();
+            $(menu).attr("isMove","false");
+            const msgID =$(from).children()[0].getAttribute("msgID");
             if(Obj.innerText=="置顶"){
                 const t_nodeObj = $("#box li:eq(0)");
-                $(menu).attr("isMove","false");
                 $(Obj).html("取消");
-
-                menu.style.WebkitTransform = "translateX(" + 0 + "px)";
                 $(from.getElementsByClassName("list")).addClass("toplist");
                 $(from.getElementsByClassName("corner_mark")).addClass("fa-thumb-tack");
                 //如果不是debug模式 调用sdk置顶
                 if(!isdebug){
                     vrv.jssdk.updateTask({
-                        msgID:$(from).children()[0].getAttribute("msgID"),
+                        msgID:msgID,
                         isTop:"true",
                         success: function (res) {
                             //alert("sd");
                         }
                     });
                 }
-                menu=null;
                 $(from).animate({ "width": "toggle" }, function () {
                     $(this).insertBefore($(t_nodeObj)).animate({ "width": "toggle" })
                 });
             }
-            else if(Obj.innerText=="取消") {
+            else {
                 const t_nodeObj = $("#box li:eq(-1)");
-
-                $(menu).attr("isMove","false");
                 $(Obj).html("置顶");
-                menu.style.WebkitTransform = "translateX(" + 0 + "px)";
                 $(from.getElementsByClassName("list")).removeClass("toplist");
                 $(from.getElementsByClassName("corner_mark")).removeClass("fa-thumb-tack");
                 //如果不是debug模式 调用sdk取消置顶
                 if(!isdebug){
                     vrv.jssdk.updateTask({
-                        msgID:$(from).children()[0].getAttribute("msgID"),
+                        msgID:msgID,
                         isTop:"false",
                         success: function (res) {
                             //alert("sd");
                         }
                     });
                 }
-                menu=null;
                 $(from).animate({ "width": "toggle" }, function () {
                     $(this).insertAfter($(t_nodeObj)).animate({ "width": "toggle" })
                 });
             }
+            menu.style.WebkitTransform = "translateX(" + 0 + "px)";
+            menu=null;
         }
 
         //------------------------------列表关闭事件------------------------------
         function liClose(dom,Obj) {
+            $('#chatAudio')[0].play();
             if(Obj.innerText=="结束"){
                 //如果不是debug模式 调用sdk关闭任务
                 if(!isdebug){
@@ -472,6 +498,8 @@
                     });
                 }
             }
+            menu.style.WebkitTransform = "translateX(" + 0 + "px)";
+            menu=null;
             $(dom).empty();
             dom.style.border= 0;
             dom.style.height=0;
