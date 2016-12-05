@@ -42,40 +42,15 @@
         font-weight: bold;
     }
     header .switch{
-        margin: 0 auto;
-        width: 60%;
-        height: 70%;
-        position: relative;
-        top: 9%;
-        font-size: 0.9em;
+        width: 230px;
+        height: 30px;
+        font-size: 1.0em;
         overflow: hidden;
-        min-width: 233px;
-        padding: 2px;
+        position: relative;
+        left: calc(50% - 150px);
+        top: 10px;
     }
-    .switch .switch_member{
-        width: 31%;
-        height: 93%;
-        float: left;
-        text-align: center;
-        line-height: 32px;
-        border: 1px solid white;
-    }
-    .switch .switch_1{
-        border-bottom-left-radius: 10px;
-        border-top-left-radius: 10px;
-    }
-    .switch .switch_2{
-        border-left: none;
-        border-right: none;
-    }
-    .switch .switch_3{
-        border-bottom-right-radius: 10px;
-        border-top-right-radius: 10px;
-    }
-    .switch .is_active{
-        color: #2694cd;
-        background-color: white;
-    }
+
     .box .card{
         height: 100%;
         width: 100%;
@@ -256,14 +231,238 @@
         bottom: 0;
         color: rgba(139, 212, 137, 0.53);
     }
+    .segmented-control {
+        background: rgb(96, 105, 162);
+        border-radius: 10px;
+        color: white;
+        transition-duration: 700ms;
+        -webkit-transition-duration: 700ms;
+        transition-timing-function: cubic-bezier(0.445, 0.05, 0.55, 0.95);
+        -webkit-transition-timing-function: cubic-bezier(0.445, 0.05, 0.55, 0.95);
+        /* Options */
+        /* Colors */
+        /* Transparent */
+    }
+    .segmented-control > input[type='radio'],
+    .segmented-control > input[type='checkbox'] {
+        position: absolute;
+        left: -1000px;
+    }
+    .segmented-control > input[type='radio']:nth-child(1):checked ~ label:nth-of-type(1):after,
+    .segmented-control > input[type='checkbox']:nth-child(1):checked ~ label:nth-of-type(1):after,
+    .segmented-control > input[type='radio']:nth-child(1):checked ~ label:nth-of-type(1):before,
+    .segmented-control > input[type='checkbox']:nth-child(1):checked ~ label:nth-of-type(1):before {
+        opacity: 1;
+    }
+    .segmented-control > input[type='radio']:nth-child(1):checked ~ label:first-of-type:nth-last-of-type(1):after,
+    .segmented-control > input[type='checkbox']:nth-child(1):checked ~ label:first-of-type:nth-last-of-type(1):after,
+    .segmented-control > input[type='radio']:nth-child(1):checked ~ label:first-of-type:nth-last-of-type(1):before,
+    .segmented-control > input[type='checkbox']:nth-child(1):checked ~ label:first-of-type:nth-last-of-type(1):before,
+    .segmented-control > input[type='radio']:nth-child(1):checked ~ label:first-of-type:nth-last-of-type(1) ~ label:after,
+    .segmented-control > input[type='checkbox']:nth-child(1):checked ~ label:first-of-type:nth-last-of-type(1) ~ label:after,
+    .segmented-control > input[type='radio']:nth-child(1):checked ~ label:first-of-type:nth-last-of-type(1) ~ label:before,
+    .segmented-control > input[type='checkbox']:nth-child(1):checked ~ label:first-of-type:nth-last-of-type(1) ~ label:before {
+        left: 0;
+    }
+    .segmented-control > input[type='radio']:nth-child(1):checked ~ label:first-of-type:nth-last-of-type(2):after,
+    .segmented-control > input[type='checkbox']:nth-child(1):checked ~ label:first-of-type:nth-last-of-type(2):after,
+    .segmented-control > input[type='radio']:nth-child(1):checked ~ label:first-of-type:nth-last-of-type(2):before,
+    .segmented-control > input[type='checkbox']:nth-child(1):checked ~ label:first-of-type:nth-last-of-type(2):before,
+    .segmented-control > input[type='radio']:nth-child(1):checked ~ label:first-of-type:nth-last-of-type(2) ~ label:after,
+    .segmented-control > input[type='checkbox']:nth-child(1):checked ~ label:first-of-type:nth-last-of-type(2) ~ label:after,
+    .segmented-control > input[type='radio']:nth-child(1):checked ~ label:first-of-type:nth-last-of-type(2) ~ label:before,
+    .segmented-control > input[type='checkbox']:nth-child(1):checked ~ label:first-of-type:nth-last-of-type(2) ~ label:before {
+        left: 0;
+    }
+    .segmented-control > input[type='radio']:nth-child(2):checked ~ label:nth-of-type(2):after,
+    .segmented-control > input[type='checkbox']:nth-child(2):checked ~ label:nth-of-type(2):after,
+    .segmented-control > input[type='radio']:nth-child(2):checked ~ label:nth-of-type(2):before,
+    .segmented-control > input[type='checkbox']:nth-child(2):checked ~ label:nth-of-type(2):before {
+        opacity: 1;
+    }
+    .segmented-control > input[type='radio']:nth-child(2):checked ~ label:first-of-type:nth-last-of-type(2):after,
+    .segmented-control > input[type='checkbox']:nth-child(2):checked ~ label:first-of-type:nth-last-of-type(2):after,
+    .segmented-control > input[type='radio']:nth-child(2):checked ~ label:first-of-type:nth-last-of-type(2):before,
+    .segmented-control > input[type='checkbox']:nth-child(2):checked ~ label:first-of-type:nth-last-of-type(2):before,
+    .segmented-control > input[type='radio']:nth-child(2):checked ~ label:first-of-type:nth-last-of-type(2) ~ label:after,
+    .segmented-control > input[type='checkbox']:nth-child(2):checked ~ label:first-of-type:nth-last-of-type(2) ~ label:after,
+    .segmented-control > input[type='radio']:nth-child(2):checked ~ label:first-of-type:nth-last-of-type(2) ~ label:before,
+    .segmented-control > input[type='checkbox']:nth-child(2):checked ~ label:first-of-type:nth-last-of-type(2) ~ label:before {
+        left: 50%;
+    }
+    .segmented-control > input[type='radio']:nth-child(2):checked ~ label:first-of-type:nth-last-of-type(3):after,
+    .segmented-control > input[type='checkbox']:nth-child(2):checked ~ label:first-of-type:nth-last-of-type(3):after,
+    .segmented-control > input[type='radio']:nth-child(2):checked ~ label:first-of-type:nth-last-of-type(3):before,
+    .segmented-control > input[type='checkbox']:nth-child(2):checked ~ label:first-of-type:nth-last-of-type(3):before,
+    .segmented-control > input[type='radio']:nth-child(2):checked ~ label:first-of-type:nth-last-of-type(3) ~ label:after,
+    .segmented-control > input[type='checkbox']:nth-child(2):checked ~ label:first-of-type:nth-last-of-type(3) ~ label:after,
+    .segmented-control > input[type='radio']:nth-child(2):checked ~ label:first-of-type:nth-last-of-type(3) ~ label:before,
+    .segmented-control > input[type='checkbox']:nth-child(2):checked ~ label:first-of-type:nth-last-of-type(3) ~ label:before {
+        left: 33.33%;
+    }
+    .segmented-control > input[type='radio']:nth-child(2):checked ~ label:first-of-type:nth-last-of-type(4):after,
+    .segmented-control > input[type='checkbox']:nth-child(2):checked ~ label:first-of-type:nth-last-of-type(4):after,
+    .segmented-control > input[type='radio']:nth-child(2):checked ~ label:first-of-type:nth-last-of-type(4):before,
+    .segmented-control > input[type='checkbox']:nth-child(2):checked ~ label:first-of-type:nth-last-of-type(4):before,
+    .segmented-control > input[type='radio']:nth-child(2):checked ~ label:first-of-type:nth-last-of-type(4) ~ label:after,
+    .segmented-control > input[type='checkbox']:nth-child(2):checked ~ label:first-of-type:nth-last-of-type(4) ~ label:after,
+    .segmented-control > input[type='radio']:nth-child(2):checked ~ label:first-of-type:nth-last-of-type(4) ~ label:before,
+    .segmented-control > input[type='checkbox']:nth-child(2):checked ~ label:first-of-type:nth-last-of-type(4) ~ label:before {
+        left: 25%;
+    }
+    .segmented-control > input[type='radio']:nth-child(2):checked ~ label:first-of-type:nth-last-of-type(5):after,
+    .segmented-control > input[type='checkbox']:nth-child(2):checked ~ label:first-of-type:nth-last-of-type(5):after,
+    .segmented-control > input[type='radio']:nth-child(2):checked ~ label:first-of-type:nth-last-of-type(5):before,
+    .segmented-control > input[type='checkbox']:nth-child(2):checked ~ label:first-of-type:nth-last-of-type(5):before,
+    .segmented-control > input[type='radio']:nth-child(2):checked ~ label:first-of-type:nth-last-of-type(5) ~ label:after,
+    .segmented-control > input[type='checkbox']:nth-child(2):checked ~ label:first-of-type:nth-last-of-type(5) ~ label:after,
+    .segmented-control > input[type='radio']:nth-child(2):checked ~ label:first-of-type:nth-last-of-type(5) ~ label:before,
+    .segmented-control > input[type='checkbox']:nth-child(2):checked ~ label:first-of-type:nth-last-of-type(5) ~ label:before {
+        left: 20%;
+    }
+    .segmented-control > input[type='radio']:nth-child(2):checked ~ label:first-of-type:nth-last-of-type(6):after,
+    .segmented-control > input[type='checkbox']:nth-child(2):checked ~ label:first-of-type:nth-last-of-type(6):after,
+    .segmented-control > input[type='radio']:nth-child(2):checked ~ label:first-of-type:nth-last-of-type(6):before,
+    .segmented-control > input[type='checkbox']:nth-child(2):checked ~ label:first-of-type:nth-last-of-type(6):before,
+    .segmented-control > input[type='radio']:nth-child(2):checked ~ label:first-of-type:nth-last-of-type(6) ~ label:after,
+    .segmented-control > input[type='checkbox']:nth-child(2):checked ~ label:first-of-type:nth-last-of-type(6) ~ label:after,
+    .segmented-control > input[type='radio']:nth-child(2):checked ~ label:first-of-type:nth-last-of-type(6) ~ label:before,
+    .segmented-control > input[type='checkbox']:nth-child(2):checked ~ label:first-of-type:nth-last-of-type(6) ~ label:before {
+        left: 16.66%;
+    }
+    .segmented-control > input[type='radio']:nth-child(3):checked ~ label:nth-of-type(3):after,
+    .segmented-control > input[type='checkbox']:nth-child(3):checked ~ label:nth-of-type(3):after,
+    .segmented-control > input[type='radio']:nth-child(3):checked ~ label:nth-of-type(3):before,
+    .segmented-control > input[type='checkbox']:nth-child(3):checked ~ label:nth-of-type(3):before {
+        opacity: 1;
+    }
+    .segmented-control > input[type='radio']:nth-child(3):checked ~ label:first-of-type:nth-last-of-type(3):after,
+    .segmented-control > input[type='checkbox']:nth-child(3):checked ~ label:first-of-type:nth-last-of-type(3):after,
+    .segmented-control > input[type='radio']:nth-child(3):checked ~ label:first-of-type:nth-last-of-type(3):before,
+    .segmented-control > input[type='checkbox']:nth-child(3):checked ~ label:first-of-type:nth-last-of-type(3):before,
+    .segmented-control > input[type='radio']:nth-child(3):checked ~ label:first-of-type:nth-last-of-type(3) ~ label:after,
+    .segmented-control > input[type='checkbox']:nth-child(3):checked ~ label:first-of-type:nth-last-of-type(3) ~ label:after,
+    .segmented-control > input[type='radio']:nth-child(3):checked ~ label:first-of-type:nth-last-of-type(3) ~ label:before,
+    .segmented-control > input[type='checkbox']:nth-child(3):checked ~ label:first-of-type:nth-last-of-type(3) ~ label:before {
+        left: 66.66%;
+    }
+    .segmented-control > input[type='radio']:nth-child(3):checked ~ label:first-of-type:nth-last-of-type(4):after,
+    .segmented-control > input[type='checkbox']:nth-child(3):checked ~ label:first-of-type:nth-last-of-type(4):after,
+    .segmented-control > input[type='radio']:nth-child(3):checked ~ label:first-of-type:nth-last-of-type(4):before,
+    .segmented-control > input[type='checkbox']:nth-child(3):checked ~ label:first-of-type:nth-last-of-type(4):before,
+    .segmented-control > input[type='radio']:nth-child(3):checked ~ label:first-of-type:nth-last-of-type(4) ~ label:after,
+    .segmented-control > input[type='checkbox']:nth-child(3):checked ~ label:first-of-type:nth-last-of-type(4) ~ label:after,
+    .segmented-control > input[type='radio']:nth-child(3):checked ~ label:first-of-type:nth-last-of-type(4) ~ label:before,
+    .segmented-control > input[type='checkbox']:nth-child(3):checked ~ label:first-of-type:nth-last-of-type(4) ~ label:before {
+        left: 50%;
+    }
+    .segmented-control > input[type='radio']:nth-child(3):checked ~ label:first-of-type:nth-last-of-type(5):after,
+    .segmented-control > input[type='checkbox']:nth-child(3):checked ~ label:first-of-type:nth-last-of-type(5):after,
+    .segmented-control > input[type='radio']:nth-child(3):checked ~ label:first-of-type:nth-last-of-type(5):before,
+    .segmented-control > input[type='checkbox']:nth-child(3):checked ~ label:first-of-type:nth-last-of-type(5):before,
+    .segmented-control > input[type='radio']:nth-child(3):checked ~ label:first-of-type:nth-last-of-type(5) ~ label:after,
+    .segmented-control > input[type='checkbox']:nth-child(3):checked ~ label:first-of-type:nth-last-of-type(5) ~ label:after,
+    .segmented-control > input[type='radio']:nth-child(3):checked ~ label:first-of-type:nth-last-of-type(5) ~ label:before,
+    .segmented-control > input[type='checkbox']:nth-child(3):checked ~ label:first-of-type:nth-last-of-type(5) ~ label:before {
+        left: 40%;
+    }
+    .segmented-control > input[type='radio']:nth-child(3):checked ~ label:first-of-type:nth-last-of-type(6):after,
+    .segmented-control > input[type='checkbox']:nth-child(3):checked ~ label:first-of-type:nth-last-of-type(6):after,
+    .segmented-control > input[type='radio']:nth-child(3):checked ~ label:first-of-type:nth-last-of-type(6):before,
+    .segmented-control > input[type='checkbox']:nth-child(3):checked ~ label:first-of-type:nth-last-of-type(6):before,
+    .segmented-control > input[type='radio']:nth-child(3):checked ~ label:first-of-type:nth-last-of-type(6) ~ label:after,
+    .segmented-control > input[type='checkbox']:nth-child(3):checked ~ label:first-of-type:nth-last-of-type(6) ~ label:after,
+    .segmented-control > input[type='radio']:nth-child(3):checked ~ label:first-of-type:nth-last-of-type(6) ~ label:before,
+    .segmented-control > input[type='checkbox']:nth-child(3):checked ~ label:first-of-type:nth-last-of-type(6) ~ label:before {
+        left: 33.33%;
+    }
+
+    .segmented-control > label {
+        display: inline-block;
+        text-align: center;
+        cursor: pointer;
+        margin-right: -4px;
+        vertical-align: text-bottom;
+        transition-duration: inherit;
+        -webkit-transition-duration: inherit;
+        transition-timing-function: inherit;
+        -webkit-transition-timing-function: inherit;
+    }
+    .segmented-control > label.italic {
+        font-style: italic;
+    }
+
+    .segmented-control > label:after {
+        position: absolute;
+        left: 0;
+        top: 0;
+        color: #FFF;
+        opacity: 0;
+        padding: inherit;
+        pointer-events: none;
+        content: attr(data-value);
+        text-align: center;
+        z-index: 1000;
+        font-style: inherit;
+        text-decoration: inherit;
+        font-weight: inherit;
+        backface-visibility: hidden;
+        -webkit-backface-visibility: hidden;
+        -webkit-transition-property: all;
+        -webkit-transition-duration: inherit;
+        -webkit-transition-timing-function: inherit;
+        transition-property: all;
+        transition-duration: inherit;
+        transition-timing-function: inherit;
+    }
+    .segmented-control > label,
+    .segmented-control > label:after {
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+        box-sizing: border-box;
+        -moz-box-sizing: border-box;
+    }
+    .segmented-control > label:before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0;
+        background: #5b79b9;
+        color: #FFF;
+        opacity: 0;
+        height: 100%;
+        pointer-events: none;
+        -webkit-transition-property: left;
+        -webkit-transition-duration: inherit;
+        -webkit-transition-timing-function: inherit;
+        transition-property: left;
+        transition-duration: inherit;
+        transition-timing-function: inherit;
+    }
+
+    .segmented-control > label:first-of-type:nth-last-of-type(3),
+    .segmented-control > label:first-of-type:nth-last-of-type(3) ~ label,
+    .segmented-control > label:first-of-type:nth-last-of-type(3):after,
+    .segmented-control > label:first-of-type:nth-last-of-type(3) ~ label:after,
+    .segmented-control > label:first-of-type:nth-last-of-type(3):before,
+    .segmented-control > label:first-of-type:nth-last-of-type(3) ~ label:before {
+        width: 33.33%;
+        height: 30px;
+        line-height: 30px;
+        margin-bottom: 4px;
+    }
 </style>
 <body>
     <header>
         <nav touchid="close" class="fa fa-angle-left"></nav>
-        <div class="switch">
-            <div touchid="shoudao" class="switch_member btn btn-lg ripple switch_1 is_active">收到任务</div>
-            <div touchid="zhipai" class="switch_member btn btn-lg ripple switch_2">指派任务</div>
-            <div touchid="wancheng" class="switch_member btn btn-lg ripple switch_3">完成任务</div>
+        <div class="switch segmented-control">
+            <input type="radio" name="sc-1" id="sc-1-1">
+            <input type="radio" name="sc-1" id="sc-1-2">
+            <input type="radio" name="sc-1" id="sc-1-3">
+            <label for="sc-1-1" data-value="收到任务" touchid="shoudao" class="switch_member btn btn-lg ripple switch_1 is_active">收到任务</label>
+            <label for="sc-1-2" data-value="指派任务" touchid="zhipai" class="switch_member btn btn-lg ripple switch_2">指派任务</label>
+            <label for="sc-1-3" data-value="完成任务" touchid="wancheng" class="switch_member btn btn-lg ripple switch_3">完成任务</label>
         </div>
     </header>
     <section id="box" class="box">
