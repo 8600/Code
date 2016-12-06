@@ -440,6 +440,9 @@
             let name="指派人:";
             //判断是收到任务还是指派任务
             if(img!==""){
+                if(img==="0"){
+                    img="img/img.png";
+                }
                 let onTop,classTop,userImg,userName,text;
                 //根据是否置顶  的不同处理方法
                 if(isTop=="1"){
