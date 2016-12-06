@@ -436,11 +436,12 @@
             }
         }
 
-        function getUserProfile(isEnd,msgID,userTitle,time,userID,isTop,isRead,isFinish,img) {
+        function getUserProfile(isEnd,msgID,userTitle,time,sendUserId,isTop,isRead,isFinish,img) {
             let name="指派人:";
+            alert("isEnd"+isEnd+"msgID"+msgID+"userTitle"+userTitle+"isTop"+isTop+"isFinish"+isFinish+"img"+img);
             //判断是收到任务还是指派任务
             if(img!==""){
-                let onTop,classTop,userImg,userName,text;
+                let onTop,classTop,userImg,userName,text,userTitle;
                 //根据是否置顶  的不同处理方法
                 if(isTop=="1"){
                     onTop='<span class="corner_mark fa fa-thumb-tack"></span>';
@@ -454,28 +455,29 @@
                 }
                 const close =(isFinish=="1")?'还原':'结束';
                 //-------------------------------------------------------------
+                alert(img);
                 //if(userTitle.length>5){userTitle=userTitle.slice(0,8)+"...";}
                 //const onRead=(isRead=="1")?'':'<span class="fa fa-mixcloud"></span>';
-                //alert(img);
                 const list= '<li class="item" ismove="false">'+
                     '<div touchid="con" msgID="'+msgID+'" class="'+classTop+'">'+
                     '<span class="i title">'+ userTitle+ '</span> '+
                     '<span class="i time fa fa-clock-o ">'+ owo.time.getLocalTime2(time)+'</span> '+
-                    '<span class="i name">'+ userID+'</span>'+
+                    '<span class="i name">'+ sendUserId+'</span>'+
                     '<span class="i assign">'+name+'</span>'+
-                    '<img touchid="img" class="i user_img" src="'+ img+'">'+onTop+
+                    '<img touchid="img" class="i user_img" src="'+"file:/"+ img+'">'+onTop+
                     '</div>'+
                     '<div touchid="con" class="clear"></div>'+
                     '<div touchid="trash" class="btn1">'+close+'</div>'+
                     '<div touchid="top" class="btn2">'+text+'</div>'+
                     '</li>';
+                alert(list);
                 if(isTop=="1"){topList+=list;}
                 else {otherList+=list;}
                 chackEnd(isEnd);
             }
             else {
                 vrv.jssdk.getUserProfile({
-                    userID:userID,
+                    userID:sendUserId,
                     success: function (res) {
                         //document.write(res);
                         //-------------------------------------------------------------
@@ -503,6 +505,7 @@
                             userName = "未知";
                         }
                         const close =(isFinish=="1")?'还原':'结束';
+                        alert(close);
                         //-------------------------------------------------------------
 
                         //if(userTitle.length>5){userTitle=userTitle.slice(0,8)+"...";}
@@ -520,6 +523,7 @@
                             '<div touchid="trash" class="btn1">'+close+'</div>'+
                             '<div touchid="top" class="btn2">'+text+'</div>'+
                             '</li>';
+                        alert(list);
                         if(isTop=="1"){topList+=list;}
                         else {otherList+=list;}
                         chackEnd(isEnd);
@@ -555,9 +559,9 @@
                 for(let index=0;index<title.length;index++){
                     const isEnd =index>=title.length-1;
                     //通过判断sendUserId是否为0 得到是  收到任务 还是  发出任务
-                    const userID=(sendUserId[index]!=="0")?sendUserId[index]:targetID[index];
+                    const userID=(sendUserId[index]=="0")?sendUserId[index]:targetID[index];
                     const userTitle =(title[index])?title[index]:title2[index];
-                    getUserProfile(isEnd,msgID[index],userTitle,time[index],userID,isTop[index],isRead[index],isFinish[index],"");
+                    getUserProfile(isEnd,msgID[index],userTitle,time[index],sendUserId[index],isTop[index],isRead[index],isFinish[index],"");
                 }
             }
         }
