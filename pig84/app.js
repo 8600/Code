@@ -52,6 +52,7 @@ function get(key,response,token,number){
 					break;
 				}
 			}
+			chunk=chunk+"";
 			response.write(chunk);
 			response.end();
 		});  
