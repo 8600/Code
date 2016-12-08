@@ -24,17 +24,22 @@ function get(key,response,token,number){
 			console.log(mess);
 			switch(key){
 				case 0:{
-					if(mess[1].length!==16){
-						chunk="不知道为什么失败了！";
+					if(mess[1]){
+						if(mess[1].length!==16){
+							chunk="不知道为什么失败了！";
+						}
+						else{
+							chunk=mess[1];
+						}
 					}
 					else{
-						chunk=mess[1];
+						chunk="不知道为什么失败了！";
 					}
 					break;
 				}
 				case 1:{
 					if(mess[0].length!==11){
-						chunk="我忘了添加号码了，请通知我添加！";
+						chunk="服务器返回错误，请刷新页面重新获取账号！";
 					}
 					else{
 						chunk=mess[0];
