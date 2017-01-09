@@ -4,13 +4,13 @@ const fs = require("fs");
 
 function get(key,response,token,number){
 	const id=[
-		"/http.aspx?action=loginIn&uid=pandelion&pwd=mmit7750",
-		"/http.aspx?action=getMobilenum&uid=pandelion&token="+token+"&pid=8816&lock=0&size=&mobile=",
-		"/http.aspx?action=getVcodeAndReleaseMobile&uid=pandelion&token="+token+"&pid=8816&mobile="+number+"&author_uid=pandelion"
+		"/pubApi/uLogin?uName=pandelion&pWord=mmit7750&Developer=Y1ywdDJCpG3BO2s4VzN7Zw%3d%3d",
+		"/pubApi/GetPhone?ItemId=2200&token="+token,
+		"/pubApi/GMessage?token="+token+"&ItemId=2200&Phone="+number
 		];
 	const options = {  
-		hostname: 'api.yma0.com',  
-		port: 80,  
+		hostname: 'api.shjmpt.com',  
+		port: 9002,  
 		path: id[key],  
 		method: "",  
 		headers: {  
@@ -20,17 +20,12 @@ function get(key,response,token,number){
 	const req = http.request(options, function (res) {  
 		res.setEncoding('utf8');  
 		res.on('data', function (chunk) { 
-			const mess=chunk.split("|");
-			console.log(mess);
+			console.log(chunk);
 			switch(key){
 				case 0:{
-					if(mess[1]){
-						if(mess[1].length!==16){
-							chunk="不知道为什么失败了！";
-						}
-						else{
-							chunk=mess[1];
-						}
+					const mess=chunk.split("&");
+					if(mess[0]){
+						chunk=mess[0];
 					}
 					else{
 						chunk="不知道为什么失败了！";
@@ -38,8 +33,9 @@ function get(key,response,token,number){
 					break;
 				}
 				case 1:{
+					const mess=chunk.split(";");
 					if(mess[0].length!==11){
-						chunk="服务器返回错误，请刷新页面重新获取账号！";
+						chunk="我忘了添加号码了，请通知我添加！";
 					}
 					else{
 						chunk=mess[0];
@@ -47,13 +43,9 @@ function get(key,response,token,number){
 					break;
 				}
 				case 2:{
-					console.log(mess[0]);
-					if(mess[0]==="not_receive"){
-						chunk="暂时没有收到验证码，自动收取中！";
-					}
-					else{
-						chunk=mess[1];
-					}
+					console.log(chunk);
+					chunk=chunk.replace("MSG&2200&","");
+					chunk=chunk.replace("&","-");
 					break;
 				}
 			}

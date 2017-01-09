@@ -10,6 +10,20 @@
 <link rel="stylesheet" type="text/css" href="http://myweb-10017157.cos.myqcloud.com/2016/20161105/devices.min.css">
 <style type="text/css">
 	html,body,ul,li,ol,dl,dd,dt,p,h1,h2,h3,h4,h5,h6,form,fieldset,legend,img{margin:0;padding:0}
+	body{
+		background-color: #9ed6ec;
+		background-image: -webkit-linear-gradient(rgba(255, 255, 255, .2) 50%, transparent 50%, transparent);
+		background-image: -o-linear-gradient(rgba(255, 255, 255, .2) 50%, transparent 50%, transparent);
+		background-image: linear-gradient(rgba(255, 255, 255, .2) 50%, transparent 50%, transparent);
+		float: left;
+		margin: 10px;
+		-webkit-background-size: 50px 50px;
+		-moz-background-size: 50px 50px;
+		background-size: 50px 50px;
+		-moz-box-shadow: 1px 1px 8px gray;
+		-webkit-box-shadow: 1px 1px 8px gray;
+		box-shadow: 1px 1px 8px gray;
+	}
 	.cd-iphone-6{
 		padding: 30px;
 		margin:10% auto;
@@ -28,6 +42,7 @@
 		font-size: 47px;
 		margin: 10% auto;
 		text-align: center;
+		color: white;
 	}
 	.box span{
 		display: block;
@@ -35,10 +50,10 @@
 	}
 	.box div{
 		cursor: pointer;
-		background-color: skyblue;
-		border-radius: 25px;
-		margin: 0 20% 0 20%;
-		color: white;
+    	background-color: white;
+    	border-radius: 25px;
+    	margin: 0 20% 0 20%;
+    	color: #902bc1;
 	}
 	.number{
 		width: 136px;
@@ -78,6 +93,10 @@
 </header>
 <script src="http://myweb-10017157.cos.myqcloud.com/2016/20161105/jquery-3.1.1.min.js"></script>
 </body>
+<script type="text/javascript" src="http://myweb-10017157.cos.myqcloud.com/2016/20161225/snow.js"></script>
+    <script type="text/javascript">
+        var snow = new Snow();
+    </script>
 <script>
 	var number=0;var key;var xxc;
 	var a="是我|name";
@@ -105,7 +124,8 @@
 	function click(b){
 		switch(number){
 			case 0:{
-				if(b.length!=16){
+				console.log(b.length);
+				if(b.length<30){
 					alert("出现了一些未知错误！");
 				}
 				else{
@@ -121,7 +141,7 @@
 			case 1:{
 				if(b.length!=11){
 					$(".a").html("出错");
-					$(".b").html("服务器返回错误，请刷新页面重新获取账号！");
+					$(".b").html("我忘了添加账号了，请联系我！");
 					$(".c").css("display","none");
 					
 				}
