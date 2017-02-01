@@ -5,8 +5,8 @@ const fs = require("fs");
 function get(key,response,token,number){
 	const id=[
 		"/pubApi/uLogin?uName=pandelion&pWord=mmit7750&Developer=Y1ywdDJCpG3BO2s4VzN7Zw%3d%3d",
-		"/pubApi/GetPhone?ItemId=2200&token="+token,
-		"/pubApi/GMessage?token="+token+"&ItemId=2200&Phone="+number
+		"/pubApi/GetPhone?ItemId=2200&Phone=17060916741&token="+token,
+		"/pubApi/GMessage?token="+token+"&ItemId=2200&Phone=17060916741"//+number
 		];
 	const options = {  
 		hostname: 'api.shjmpt.com',  

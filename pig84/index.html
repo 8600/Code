@@ -141,7 +141,7 @@
 			case 1:{
 				if(b.length!=11){
 					$(".a").html("出错");
-					$(".b").html("我忘了添加账号了，请联系我！");
+					$(".b").html("出现未知错误！");
 					$(".c").css("display","none");
 					
 				}
@@ -156,6 +156,9 @@
 				}
 				break;
 			}
+			//case 2:{
+
+			//}
 			default:{
 				$(".a").html("第"+(number-1)+"次获取验证码");
 				$(".b").html(b);
